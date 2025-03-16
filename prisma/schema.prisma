@@ -15,9 +15,30 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
         
-
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id             Int      @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  email          String   @unique
+  phone          String
+  addresses      Address[] // Relacionamento com a tabela Address
+  accounts       Account[] // Relacionamento com a tabela Account
+}
+
+model Address {
+  id        Int    @id @default(autoincrement())
+  userId    Int
+  address   String
+  city      String
+  state     String
+  zipCode   String
+  user      User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
+}
+
+model Account {
+  id             Int    @id @default(autoincrement())
+  userId         Int
+  username       String @unique
+  password       String
+  user           User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
 }
