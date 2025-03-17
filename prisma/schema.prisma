@@ -1,3 +1,9 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,70 +14,40 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Affiliate {
-  id                String  @id @default(uuid())
-  fullname          String
-  phone             String?
-  email             String? @unique
-  rg                String? @unique
-  cpf               String? @unique
-  cnh               String? @unique
-  cnhCategory       String?
-  cnhExpirationDate String?
-
-  vehicle   Vehicle?
-  addresses Address[]
-  user      User[]
-  events    Event[]
-}
-
-model ThirdParty {
-  id       String @id @default(uuid())
-  fullName String
-
-  event Event?
-}
-
-model Vehicle {
-  id           String  @id @default(uuid())
-  affiliateId  String  @unique
-  brand        String?
-  model        String?
-  licensePlate String?
-  color        String?
-  chassiss     String?
-  yearModel    String?
-  fipe         Float?
-  fuelType     String?
-
-  affiliate Affiliate @relation(fields: [affiliateId], references: [id])
+model User {
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String    @unique
+  phone     String
+  addresses Address[] // Relacionamento com a tabela Address
+  accounts  Account[] // Relacionamento com a tabela Account
+  events    Event[] // Relacionamento com a tabela Event
 }
 
 model Event {
-  id           String  @id @default(uuid())
-  affiliateId  String
-  thirdPartyId String  @unique
-  type         String?
-  location     String?
-
-  Affiliate  Affiliate  @relation(fields: [affiliateId], references: [id])
-  ThirdParty ThirdParty @relation(fields: [thirdPartyId], references: [id])
+  id            Int    @id @default(autoincrement())
+  userId        Int
+  eventName     String
+  eventType     String
+  eventLocation String
+  user          User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
 }
 
 model Address {
-  id          Int       @id @default(autoincrement())
-  affiliateId String
-  address     String?
-  city        String?
-  state       String?
-  zipCode     String?
-  Affiliate   Affiliate @relation(fields: [affiliateId], references: [id]) // Relacionamento com a tabela Affiliate
+  id      Int    @id @default(autoincrement())
+  userId  Int
+  address String
+  city    String
+  state   String
+  zipCode String
+  user    User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
 }
 
-model User {
-  id            Int       @id @default(autoincrement())
-  affiliateId   String
-  Affiliatename String    @unique
-  password      String
-  Affiliate     Affiliate @relation(fields: [affiliateId], references: [id]) // Relacionamento com a tabela Affiliate
+model Account {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  username String @unique
+  password String
+  user     User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
 }

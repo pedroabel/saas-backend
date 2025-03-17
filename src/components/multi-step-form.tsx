@@ -127,6 +127,7 @@ export default function MultiStepForm() {
       alert("Formulário enviado com sucesso!");
     } catch (error) {
       alert("Falha ao enviar o formulário.");
+      console.log(error);
     }
   };
 
