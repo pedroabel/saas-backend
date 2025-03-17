@@ -7,16 +7,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-interface AddressFormData {
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-}
+import type { CreateFormData } from "@/schemas/form-schema";
 
 interface AddressFormProps {
-  form: UseFormReturn<AddressFormData>;
+  form: UseFormReturn<CreateFormData>;
 }
 
 export function AddressForm({ form }: AddressFormProps) {

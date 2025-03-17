@@ -7,15 +7,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-interface EventFormData {
-  eventName: string;
-  eventType: string;
-  eventLocation: string;
-}
+import type { CreateFormData } from "@/schemas/form-schema";
 
 interface EventInfoFormProps {
-  form: UseFormReturn<EventFormData>;
+  form: UseFormReturn<CreateFormData>;
 }
 
 export function EventInfoForm({ form }: EventInfoFormProps) {

@@ -8,16 +8,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-interface PersonalInfoFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-}
+import type { CreateFormData } from "@/schemas/form-schema";
 
 interface PersonalInfoFormProps {
-  form: UseFormReturn<PersonalInfoFormData>;
+  form: UseFormReturn<CreateFormData>;
 }
 
 export function PersonalInfoForm({ form }: PersonalInfoFormProps) {

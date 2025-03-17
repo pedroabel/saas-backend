@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, UseFormReturn } from "react-hook-form";
-import * as z from "zod";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,15 +18,12 @@ import { AddressForm } from "./address-form";
 import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
 import { EventInfoForm } from "./event-form";
-import { createFormSchema } from "@/schemas/form-schema";
-
-type CreateFormData = z.infer<typeof createFormSchema>;
+import { createFormSchema, type CreateFormData } from "@/schemas/form-schema";
 
 type Step = {
   id: string;
   name: string;
   fields: (keyof CreateFormData)[];
-  component: React.FC<{ form: UseFormReturn<CreateFormData> }>;
 };
 
 const steps: Step[] = [
@@ -35,31 +31,28 @@ const steps: Step[] = [
     id: "event",
     name: "Event",
     fields: ["eventName", "eventType", "eventLocation"],
-    component: EventInfoForm,
   },
   {
     id: "address",
     name: "Address",
     fields: ["address", "city", "state", "zipCode"],
-    component: AddressForm,
   },
   {
     id: "account",
     name: "Account",
     fields: ["username", "password", "confirmPassword"],
-    component: AccountForm,
   },
   {
     id: "personal-info",
     name: "Personal Information",
     fields: ["firstName", "lastName", "email", "phone"],
-    component: PersonalInfoForm,
   },
-  { id: "review", name: "Review", fields: [], component: ReviewForm },
+  { id: "review", name: "Review", fields: [] },
 ];
 
 export default function MultiStepForm() {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState(0);
+
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
     defaultValues: {
@@ -110,8 +103,6 @@ export default function MultiStepForm() {
     }
   };
 
-  const CurrentStepComponent = steps[currentStep].component;
-
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card className="w-full max-w-3xl">
@@ -157,7 +148,11 @@ export default function MultiStepForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
-              <CurrentStepComponent form={form} />
+              {currentStep === 0 && <PersonalInfoForm form={form} />}
+              {currentStep === 1 && <AddressForm form={form} />}
+              {currentStep === 2 && <AccountForm form={form} />}
+              {currentStep === 3 && <EventInfoForm form={form} />}
+              {currentStep === 4 && <ReviewForm form={form} />}
             </CardContent>
 
             <CardFooter className="flex justify-between mt-4">

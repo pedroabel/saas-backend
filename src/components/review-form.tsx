@@ -1,24 +1,10 @@
 import type { UseFormReturn } from "react-hook-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-
-interface ReviewFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  username: string;
-  eventName: string;
-  eventType: string;
-  eventLocation: string;
-}
+import type { CreateFormData } from "@/schemas/form-schema";
 
 interface ReviewFormProps {
-  form: UseFormReturn<ReviewFormData>;
+  form: UseFormReturn<CreateFormData>;
 }
 
 export function ReviewForm({ form }: ReviewFormProps) {

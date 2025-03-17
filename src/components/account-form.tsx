@@ -8,15 +8,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-interface AccountFormData {
-  username: string;
-  password: string;
-  confirmPassword: string;
-}
+import type { CreateFormData } from "@/schemas/form-schema";
 
 interface AccountFormProps {
-  form: UseFormReturn<AccountFormData>;
+  form: UseFormReturn<CreateFormData>;
 }
 
 export function AccountForm({ form }: AccountFormProps) {
