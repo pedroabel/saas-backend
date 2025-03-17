@@ -23,7 +23,17 @@ model User {
   phone          String
   addresses      Address[] // Relacionamento com a tabela Address
   accounts       Account[] // Relacionamento com a tabela Account
+  events         Event[]   // Relacionamento com a tabela Event
 }
+
+model Event {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  eventName      String
+  eventType      String
+  eventLocation   String
+  user           User     @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
+} 
 
 model Address {
   id        Int    @id @default(autoincrement())

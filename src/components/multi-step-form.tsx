@@ -19,6 +19,7 @@ import { AddressForm } from "./address-form";
 import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
 import { CheckCircle2, CircleDashed } from "lucide-react";
+import { EventInfoForm } from "./event-form";
 
 // Define the form schema for all steps
 const formSchema = z
@@ -57,6 +58,17 @@ const formSchema = z
     confirmPassword: z
       .string()
       .min(8, { message: "Confirm password must be at least 8 characters." }),
+
+    // Event
+    eventName: z
+      .string()
+      .min(3, { message: "eventName must be at least 3 characters." }),
+    eventType: z
+      .string()
+      .min(8, { message: "eventType must be at least 8 characters." }),
+    eventLocation: z
+      .string()
+      .min(8, { message: "eventLocation must be at least 8 characters." }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -79,6 +91,11 @@ const steps = [
     id: "account",
     name: "Account",
     fields: ["username", "password", "confirmPassword"],
+  },
+  {
+    id: "event",
+    name: "event",
+    fields: ["eventName", "eventType", "eventLocation"],
   },
   {
     id: "review",
@@ -107,6 +124,9 @@ export default function MultiStepForm() {
       username: "",
       password: "",
       confirmPassword: "",
+      eventName: "",
+      eventType: "",
+      eventLocation: "",
     },
     mode: "onChange",
   });
@@ -212,7 +232,8 @@ export default function MultiStepForm() {
               {currentStep === 0 && <PersonalInfoForm form={form} />}
               {currentStep === 1 && <AddressForm form={form} />}
               {currentStep === 2 && <AccountForm form={form} />}
-              {currentStep === 3 && <ReviewForm form={form} />}
+              {currentStep === 3 && <EventInfoForm form={form} />}
+              {currentStep === 4 && <ReviewForm form={form} />}
             </CardContent>
 
             <CardFooter className="flex justify-between">

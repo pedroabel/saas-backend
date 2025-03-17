@@ -26,6 +26,13 @@ export async function POST(request: Request) {
             password: data.password, // Certifique-se de hash a senha antes de armazená-la
           },
         },
+        events: {
+          create: {
+            eventLocation: data.eventLocation,
+            eventName: data.eventName,
+            eventType: data.eventType,
+          },
+        },
       },
     });
 
