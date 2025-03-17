@@ -8,8 +8,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+interface AddressFormData {
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
 interface AddressFormProps {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<AddressFormData>;
 }
 
 export function AddressForm({ form }: AddressFormProps) {

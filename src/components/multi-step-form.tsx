@@ -19,36 +19,15 @@ import { AddressForm } from "./address-form";
 import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
 import { EventInfoForm } from "./event-form";
+import { createFormSchema } from "@/schemas/form-schema";
 
-const formSchema = z
-  .object({
-    firstName: z.string(),
-    lastName: z.string(),
-    email: z.string(),
-    phone: z.string(),
-    address: z.string(),
-    city: z.string(),
-    state: z.string(),
-    zipCode: z.string(),
-    username: z.string(),
-    password: z.string(),
-    confirmPassword: z.string(),
-    eventName: z.string(),
-    eventType: z.string(),
-    eventLocation: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
-
-type FormValues = z.infer<typeof formSchema>;
+type CreateFormData = z.infer<typeof createFormSchema>;
 
 type Step = {
   id: string;
   name: string;
-  fields: (keyof FormValues)[];
-  component: React.FC<{ form: UseFormReturn<FormValues> }>;
+  fields: (keyof CreateFormData)[];
+  component: React.FC<{ form: UseFormReturn<CreateFormData> }>;
 };
 
 const steps: Step[] = [
@@ -81,8 +60,8 @@ const steps: Step[] = [
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState<number>(0);
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<CreateFormData>({
+    resolver: zodResolver(createFormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -116,7 +95,7 @@ export default function MultiStepForm() {
     }
   };
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: CreateFormData) => {
     try {
       const response = await fetch("/api/form", {
         method: "POST",

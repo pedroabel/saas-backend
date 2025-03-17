@@ -9,8 +9,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+interface PersonalInfoFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+}
+
 interface PersonalInfoFormProps {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<PersonalInfoFormData>;
 }
 
 export function PersonalInfoForm({ form }: PersonalInfoFormProps) {

@@ -8,8 +8,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+interface EventFormData {
+  eventName: string;
+  eventType: string;
+  eventLocation: string;
+}
+
 interface EventInfoFormProps {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<EventFormData>;
 }
 
 export function EventInfoForm({ form }: EventInfoFormProps) {

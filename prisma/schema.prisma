@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,22 +10,22 @@ datasource db {
 
 model User {
   id        Int       @id @default(autoincrement())
+  email     String    @unique
   firstName String
   lastName  String
-  email     String    @unique
   phone     String
-  addresses Address[] // Relacionamento com a tabela Address
-  accounts  Account[] // Relacionamento com a tabela Account
-  events    Event[] // Relacionamento com a tabela Event
+  accounts  Account[]
+  addresses Address[]
+  events    Event[]
 }
 
 model Event {
   id            Int    @id @default(autoincrement())
   userId        Int
   eventName     String
-  eventType     String
   eventLocation String
-  user          User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
+  eventType     String
+  user          User   @relation(fields: [userId], references: [id])
 }
 
 model Address {
@@ -41,7 +35,7 @@ model Address {
   city    String
   state   String
   zipCode String
-  user    User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
+  user    User   @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -49,5 +43,5 @@ model Account {
   userId   Int
   username String @unique
   password String
-  user     User   @relation(fields: [userId], references: [id]) // Relacionamento com a tabela User
+  user     User   @relation(fields: [userId], references: [id])
 }
