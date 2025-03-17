@@ -16,18 +16,18 @@ interface AccountFormProps {
 export function AccountForm({ form }: AccountFormProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Account Information</h2>
+      <h2 className="text-xl font-semibold">Informações da Conta</h2>
 
       <FormField
         control={form.control}
         name="username"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Username</FormLabel>
+            <FormLabel>Nome de Usuário</FormLabel>
             <FormControl>
               <Input placeholder="johndoe" {...field} />
             </FormControl>
-            <FormDescription>This will be your login name.</FormDescription>
+            <FormDescription>Este será seu nome de login.</FormDescription>
             <FormMessage />
           </FormItem>
         )}
@@ -38,12 +38,12 @@ export function AccountForm({ form }: AccountFormProps) {
         name="password"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Senha</FormLabel>
             <FormControl>
               <Input type="password" placeholder="********" {...field} />
             </FormControl>
             <FormDescription>
-              Password must be at least 8 characters.
+              A senha deve ter pelo menos 8 caracteres.
             </FormDescription>
             <FormMessage />
           </FormItem>
@@ -55,7 +55,7 @@ export function AccountForm({ form }: AccountFormProps) {
         name="confirmPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Confirm Password</FormLabel>
+            <FormLabel>Confirmar Senha</FormLabel>
             <FormControl>
               <Input type="password" placeholder="********" {...field} />
             </FormControl>

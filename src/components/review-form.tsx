@@ -12,27 +12,27 @@ export function ReviewForm({ form }: ReviewFormProps) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Review Your Information</h2>
+      <h2 className="text-xl font-semibold">Revise suas Informações</h2>
       <p className="text-muted-foreground">
-        Please review your information before submitting.
+        Por favor, revise suas informações antes de enviar.
       </p>
 
       <Card>
         <CardContent className="pt-6">
           <div className="space-y-4">
             <div>
-              <h3 className="font-medium">Personal Information</h3>
+              <h3 className="font-medium">Informações Pessoais</h3>
               <Separator className="my-2" />
               <dl className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    First Name
+                    Nome
                   </dt>
                   <dd>{values.firstName}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Last Name
+                    Sobrenome
                   </dt>
                   <dd>{values.lastName}</dd>
                 </div>
@@ -44,7 +44,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Phone
+                    Telefone
                   </dt>
                   <dd>{values.phone}</dd>
                 </div>
@@ -52,30 +52,30 @@ export function ReviewForm({ form }: ReviewFormProps) {
             </div>
 
             <div>
-              <h3 className="font-medium">Address</h3>
+              <h3 className="font-medium">Endereço</h3>
               <Separator className="my-2" />
               <dl className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Street Address
+                    Endereço
                   </dt>
                   <dd>{values.address}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    City
+                    Cidade
                   </dt>
                   <dd>{values.city}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    State
+                    Estado
                   </dt>
                   <dd>{values.state}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Zip Code
+                    Código Postal
                   </dt>
                   <dd>{values.zipCode}</dd>
                 </div>
@@ -83,20 +83,45 @@ export function ReviewForm({ form }: ReviewFormProps) {
             </div>
 
             <div>
-              <h3 className="font-medium">Account</h3>
+              <h3 className="font-medium">Conta</h3>
               <Separator className="my-2" />
               <dl className="grid grid-cols-1 gap-2">
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Username
+                    Nome de Usuário
                   </dt>
                   <dd>{values.username}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Password
+                    Senha
                   </dt>
                   <dd>********</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div>
+              <h3 className="font-medium">Informações do Evento</h3>
+              <Separator className="my-2" />
+              <dl className="grid grid-cols-1 gap-2">
+                <div>
+                  <dt className="text-sm font-medium text-muted-foreground">
+                    Nome do Evento
+                  </dt>
+                  <dd>{values.eventName}</dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-medium text-muted-foreground">
+                    Tipo de Evento
+                  </dt>
+                  <dd>{values.eventType}</dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-medium text-muted-foreground">
+                    Endereço do Evento
+                  </dt>
+                  <dd>{values.eventLocation}</dd>
                 </div>
               </dl>
             </div>

@@ -16,16 +16,16 @@ interface PersonalInfoFormProps {
 export function PersonalInfoForm({ form }: PersonalInfoFormProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Personal Information</h2>
+      <h2 className="text-xl font-semibold">Informações Pessoais</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           control={form.control}
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>First Name</FormLabel>
+              <FormLabel>Nome</FormLabel>
               <FormControl>
-                <Input placeholder="John" {...field} />
+                <Input placeholder="João" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -37,7 +37,7 @@ export function PersonalInfoForm({ form }: PersonalInfoFormProps) {
           name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Last Name</FormLabel>
+              <FormLabel>Sobrenome</FormLabel>
               <FormControl>
                 <Input placeholder="Doe" {...field} />
               </FormControl>
@@ -56,12 +56,12 @@ export function PersonalInfoForm({ form }: PersonalInfoFormProps) {
             <FormControl>
               <Input
                 type="email"
-                placeholder="john.doe@example.com"
+                placeholder="joao.doe@exemplo.com"
                 {...field}
               />
             </FormControl>
             <FormDescription>
-              We'll never share your email with anyone else.
+              Nunca compartilharemos seu email com ninguém.
             </FormDescription>
             <FormMessage />
           </FormItem>
@@ -73,7 +73,7 @@ export function PersonalInfoForm({ form }: PersonalInfoFormProps) {
         name="phone"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Phone Number</FormLabel>
+            <FormLabel>Número de Telefone</FormLabel>
             <FormControl>
               <Input placeholder="(123) 456-7890" {...field} />
             </FormControl>

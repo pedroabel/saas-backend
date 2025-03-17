@@ -1,7 +1,6 @@
 import type { UseFormReturn } from "react-hook-form";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,14 +15,14 @@ interface EventInfoFormProps {
 export function EventInfoForm({ form }: EventInfoFormProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Event Information</h2>
+      <h2 className="text-xl font-semibold">Informações do Evento</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           control={form.control}
           name="eventName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Event Name</FormLabel>
+              <FormLabel>Nome do Evento</FormLabel>
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>
@@ -37,9 +36,9 @@ export function EventInfoForm({ form }: EventInfoFormProps) {
           name="eventType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Event Type</FormLabel>
+              <FormLabel>Tipo de Evento</FormLabel>
               <FormControl>
-                <Input placeholder="Doe" {...field} />
+                <Input placeholder="Tipo do Evento" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -52,7 +51,7 @@ export function EventInfoForm({ form }: EventInfoFormProps) {
         name="eventLocation"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Event Address</FormLabel>
+            <FormLabel>Endereço do Evento</FormLabel>
             <FormControl>
               <Input placeholder="" {...field} />
             </FormControl>

@@ -15,16 +15,16 @@ interface AddressFormProps {
 export function AddressForm({ form }: AddressFormProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Address Information</h2>
+      <h2 className="text-xl font-semibold">Informações de Endereço</h2>
 
       <FormField
         control={form.control}
         name="address"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Street Address</FormLabel>
+            <FormLabel>Endereço</FormLabel>
             <FormControl>
-              <Input placeholder="123 Main St" {...field} />
+              <Input placeholder="123 Rua Principal" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -37,9 +37,9 @@ export function AddressForm({ form }: AddressFormProps) {
           name="city"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>City</FormLabel>
+              <FormLabel>Cidade</FormLabel>
               <FormControl>
-                <Input placeholder="New York" {...field} />
+                <Input placeholder="Nova Iorque" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -51,7 +51,7 @@ export function AddressForm({ form }: AddressFormProps) {
           name="state"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>State</FormLabel>
+              <FormLabel>Estado</FormLabel>
               <FormControl>
                 <Input placeholder="NY" {...field} />
               </FormControl>
@@ -66,7 +66,7 @@ export function AddressForm({ form }: AddressFormProps) {
         name="zipCode"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Zip Code</FormLabel>
+            <FormLabel>Código Postal</FormLabel>
             <FormControl>
               <Input placeholder="10001" {...field} />
             </FormControl>
