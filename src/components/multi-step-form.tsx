@@ -149,8 +149,8 @@ export default function MultiStepForm() {
                     index < currentStep
                       ? "bg-primary text-primary-foreground"
                       : index === currentStep
-                      ? "border-2 border-primary text-primary"
-                      : "border-2 border-muted text-muted-foreground"
+                        ? "border-2 border-primary text-primary"
+                        : "border-2 border-muted text-muted-foreground"
                   }`}
                 ></div>
                 <span
@@ -180,7 +180,7 @@ export default function MultiStepForm() {
               <CurrentStepComponent form={form} />
             </CardContent>
 
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex justify-between mt-4">
               <Button
                 type="button"
                 variant="outline"
