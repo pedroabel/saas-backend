@@ -18,7 +18,8 @@ import { AddressForm } from "./address-form";
 import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
 import { EventInfoForm } from "./event-form";
-import { createFormSchema, type CreateFormData } from "@/schemas/form-schema";
+import { createFormSchema } from "@/schemas/form-schema";
+import type { CreateFormData } from "@/types/form";
 
 type Step = {
   id: string;
