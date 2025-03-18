@@ -8,40 +8,44 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  firstName String
-  lastName  String
-  phone     String
-  accounts  Account[]
-  addresses Address[]
-  events    Event[]
+model Affiliate {
+  id                String    @id @default(uuid())
+  fullName          String
+  phone             String
+  email             String
+  rg                String
+  cpf               String
+  cnh               String
+  cnhCategory       String
+  cnhExpirationDate String
+  accounts          Account[]
+  addresses         Address[]
+  events            Event[]
 }
 
 model Event {
-  id            Int    @id @default(autoincrement())
-  userId        Int
+  id            String    @id @default(uuid())
+  affiliateId   String
   eventName     String
   eventLocation String
   eventType     String
-  user          User   @relation(fields: [userId], references: [id])
+  affiliate     Affiliate @relation(fields: [affiliateId], references: [id])
 }
 
 model Address {
-  id      Int    @id @default(autoincrement())
-  userId  Int
-  address String
-  city    String
-  state   String
-  zipCode String
-  user    User   @relation(fields: [userId], references: [id])
+  id          String    @id @default(uuid())
+  affiliateId String
+  address     String
+  city        String
+  state       String
+  zipCode     String
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id])
 }
 
 model Account {
-  id       Int    @id @default(autoincrement())
-  userId   Int
-  username String @unique
-  password String
-  user     User   @relation(fields: [userId], references: [id])
+  id          String    @id @default(uuid())
+  affiliateId String
+  username    String
+  password    String
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id])
 }

@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import type { CreateFormData } from "@/schemas/form-schema";
+import type { CreateFormData } from "@/types/form";
 
 interface AccountFormProps {
   form: UseFormReturn<CreateFormData>;

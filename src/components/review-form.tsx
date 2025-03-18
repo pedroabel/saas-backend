@@ -1,7 +1,7 @@
 import type { UseFormReturn } from "react-hook-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { CreateFormData } from "@/schemas/form-schema";
+import type { CreateFormData } from "@/types/form";
 
 interface ReviewFormProps {
   form: UseFormReturn<CreateFormData>;

@@ -6,12 +6,16 @@ export async function POST(request: Request) {
 
   try {
     // Criação do usuário
-    const user = await prisma.user.create({
+    const user = await prisma.affiliate.create({
       data: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
+        fullName: data.fullName,
         phone: data.phone,
+        email: data.email,
+        rg: data.rg,
+        cpf: data.cpf,
+        cnh: data.cnh,
+        cnhCategory: data.cnhCategory,
+        cnhExpirationDate: data.cnhExpirationDate,
         addresses: {
           create: {
             address: data.address,
@@ -41,7 +45,7 @@ export async function POST(request: Request) {
     console.error("Error creating user:", error);
     return NextResponse.json(
       { error: "Erro ao criar usuário" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

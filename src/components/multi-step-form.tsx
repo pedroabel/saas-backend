@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { PersonalInfoForm } from "./personal-info-form";
+import { AffiliateForm } from "./affiliate-form";
 import { AddressForm } from "./address-form";
 import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
@@ -29,9 +29,18 @@ type Step = {
 
 const steps: Step[] = [
   {
-    id: "event",
-    name: "Event",
-    fields: ["eventName", "eventType", "eventLocation"],
+    id: "affiliate-info",
+    name: "Affiliate Information",
+    fields: [
+      "fullName",
+      "phone",
+      "email",
+      "rg",
+      "cpf",
+      "cnh",
+      "cnhCategory",
+      "cnhExpirationDate",
+    ],
   },
   {
     id: "address",
@@ -44,9 +53,9 @@ const steps: Step[] = [
     fields: ["username", "password", "confirmPassword"],
   },
   {
-    id: "personal-info",
-    name: "Personal Information",
-    fields: ["firstName", "lastName", "email", "phone"],
+    id: "event",
+    name: "Event",
+    fields: ["eventName", "eventType", "eventLocation"],
   },
   { id: "review", name: "Review", fields: [] },
 ];
@@ -57,10 +66,15 @@ export default function MultiStepForm() {
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      fullName: "",
       phone: "",
+      email: "",
+      rg: "",
+      cpf: "",
+      cnh: "",
+      cnhCategory: "",
+      cnhExpirationDate: "",
+
       address: "",
       city: "",
       state: "",
@@ -149,7 +163,7 @@ export default function MultiStepForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
-              {currentStep === 0 && <PersonalInfoForm form={form} />}
+              {currentStep === 0 && <AffiliateForm form={form} />}
               {currentStep === 1 && <AddressForm form={form} />}
               {currentStep === 2 && <AccountForm form={form} />}
               {currentStep === 3 && <EventInfoForm form={form} />}
@@ -172,12 +186,9 @@ export default function MultiStepForm() {
                   </Button>
                 )}
 
-                <Button
-                  type="submit"
-                  disabled={currentStep !== steps.length - 1}
-                >
-                  Enviar
-                </Button>
+                {currentStep === steps.length - 1 && (
+                  <Button type="submit">Enviar</Button>
+                )}
               </div>
             </CardFooter>
           </form>
