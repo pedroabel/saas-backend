@@ -49,7 +49,7 @@ export function ReportForm({ form }: ReportFormProps) {
 
         <FormField
           control={form.control}
-          name="vehiclePhoto"
+          name="vehiclePhotos"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Fotos do Veiculo</FormLabel>

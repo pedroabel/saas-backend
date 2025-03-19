@@ -4,7 +4,7 @@ CREATE TABLE "Report" (
     "eventId" TEXT NOT NULL,
     "eventDescription" TEXT NOT NULL,
     "apparentDamage" TEXT NOT NULL,
-    "vehiclePhoto" TEXT NOT NULL,
+    "vehiclePhotos" TEXT NOT NULL,
     "videoPhoto" TEXT NOT NULL,
 
     CONSTRAINT "Report_pkey" PRIMARY KEY ("id")

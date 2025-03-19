@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export async function POST(request: Request) {
   const data = await request.json();
-
+  console.log(data);
   try {
     // Criação do usuário
     const user = await prisma.affiliate.create({
@@ -41,9 +41,11 @@ export async function POST(request: Request) {
             report: {
               create: {
                 description: data.description,
-                apparentDamage: data.description,
-                vehiclePhoto: data.description,
-                vehicleVideo: data.description,
+                apparentDamage: data.apparentDamage,
+                vehiclePhotos: Array.isArray(data.vehiclePhotos)
+                  ? data.vehiclePhotos
+                  : [],
+                vehicleVideo: data.vehicleVideo,
               },
             },
           },

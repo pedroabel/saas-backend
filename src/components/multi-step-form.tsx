@@ -120,7 +120,7 @@ export default function MultiStepForm() {
       //Reports
       description: "",
       apparentDamage: "",
-      vehiclePhoto: "",
+      vehiclePhotos: [], // Changed to an empty array to match the expected type
       vehicleVideo: "",
 
       //Address
@@ -239,6 +239,7 @@ export default function MultiStepForm() {
                   <Button type="submit">Enviar</Button>
                 )}
               </div>
+              <Button type="submit">Enviar</Button>
             </CardFooter>
           </form>
         </Form>

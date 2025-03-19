@@ -33,7 +33,7 @@ export const createFormSchema = z
     //Report
     description: z.string(),
     apparentDamage: z.string(),
-    vehiclePhoto: z.string(),
+    vehiclePhotos: z.string().array(),
     vehicleVideo: z.string(),
     //Terms and Sign
     //Address

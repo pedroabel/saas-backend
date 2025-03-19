@@ -57,11 +57,11 @@ model Event {
 }
 
 model Report {
-  id             String @id @default(uuid())
+  id             String   @id @default(uuid())
   eventId        String
   description    String
   apparentDamage String
-  vehiclePhoto   String
+  vehiclePhotos  String[]
   vehicleVideo   String
 
   event Event @relation(fields: [eventId], references: [id])
