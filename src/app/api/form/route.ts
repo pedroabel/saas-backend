@@ -16,7 +16,39 @@ export async function POST(request: Request) {
         cnh: data.cnh,
         cnhCategory: data.cnhCategory,
         cnhExpirationDate: data.cnhExpirationDate,
-        addresses: {
+        vehicle: {
+          create: {
+            brand: data.brand,
+            model: data.model,
+            licensePlate: data.licensePlate,
+            color: data.color,
+            chassiss: data.chassiss,
+            yearModel: data.yearModel,
+            fipeValue: data.fipeValue,
+            fuelType: data.fuelType,
+          },
+        },
+        event: {
+          create: {
+            protocol: data.protocol,
+            type: data.type,
+            location: data.location,
+            policeReportNumber: data.policeReportNumber,
+            hasThirdParty: data.hasThirdParty,
+            thirdPartyEmail: data.thirdPartyEmail,
+            thirdPartyPhone: data.thirdPartyPhone,
+            driver: data.driver,
+            report: {
+              create: {
+                description: data.description,
+                apparentDamage: data.description,
+                vehiclePhoto: data.description,
+                vehicleVideo: data.description,
+              },
+            },
+          },
+        },
+        address: {
           create: {
             address: data.address,
             city: data.city,
@@ -24,17 +56,10 @@ export async function POST(request: Request) {
             zipCode: data.zipCode,
           },
         },
-        accounts: {
+        account: {
           create: {
             username: data.username,
             password: data.password, // Certifique-se de hash a senha antes de armazená-la
-          },
-        },
-        events: {
-          create: {
-            eventLocation: data.eventLocation,
-            eventName: data.eventName,
-            eventType: data.eventType,
           },
         },
       },

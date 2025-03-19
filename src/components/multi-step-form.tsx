@@ -20,6 +20,8 @@ import { ReviewForm } from "./review-form";
 import { EventInfoForm } from "./event-form";
 import { createFormSchema } from "@/schemas/form-schema";
 import type { CreateFormData } from "@/types/form";
+import { VehicleForm } from "./vehicle-form";
+import { ReportForm } from "./report-form";
 
 type Step = {
   id: string;
@@ -29,7 +31,7 @@ type Step = {
 
 const steps: Step[] = [
   {
-    id: "affiliate-info",
+    id: "affiliate",
     name: "Affiliate Information",
     fields: [
       "fullName",
@@ -43,6 +45,33 @@ const steps: Step[] = [
     ],
   },
   {
+    id: "vehicle",
+    name: "Vehicle",
+    fields: [
+      "brand",
+      "model",
+      "licensePlate",
+      "color",
+      "yearModel",
+      "fipeValue",
+      "fuelType",
+    ],
+  },
+  {
+    id: "event",
+    name: "Event",
+    fields: [
+      "protocol",
+      "type",
+      "location",
+      "policeReportNumber",
+      "hasThirdParty",
+      "thirdPartyEmail",
+      "thirdPartyPhone",
+      "driver",
+    ],
+  },
+  {
     id: "address",
     name: "Address",
     fields: ["address", "city", "state", "zipCode"],
@@ -51,11 +80,6 @@ const steps: Step[] = [
     id: "account",
     name: "Account",
     fields: ["username", "password", "confirmPassword"],
-  },
-  {
-    id: "event",
-    name: "Event",
-    fields: ["eventName", "eventType", "eventLocation"],
   },
   { id: "review", name: "Review", fields: [] },
 ];
@@ -66,6 +90,7 @@ export default function MultiStepForm() {
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
     defaultValues: {
+      //Affiliate
       fullName: "",
       phone: "",
       email: "",
@@ -74,17 +99,39 @@ export default function MultiStepForm() {
       cnh: "",
       cnhCategory: "",
       cnhExpirationDate: "",
+      //Vehicle
+      brand: "",
+      model: "",
+      licensePlate: "",
+      color: "",
+      chassiss: "",
+      yearModel: "",
+      fipeValue: "",
+      fuelType: "",
+      //Event
+      protocol: "",
+      type: "",
+      location: "",
+      policeReportNumber: "",
+      hasThirdParty: "",
+      thirdPartyEmail: "",
+      thirdPartyPhone: "",
+      driver: "",
+      //Reports
+      description: "",
+      apparentDamage: "",
+      vehiclePhoto: "",
+      vehicleVideo: "",
 
+      //Address
       address: "",
       city: "",
       state: "",
       zipCode: "",
+      //Account
       username: "",
       password: "",
       confirmPassword: "",
-      eventName: "",
-      eventType: "",
-      eventLocation: "",
     },
     mode: "onChange",
   });
@@ -164,10 +211,12 @@ export default function MultiStepForm() {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
               {currentStep === 0 && <AffiliateForm form={form} />}
-              {currentStep === 1 && <AddressForm form={form} />}
-              {currentStep === 2 && <AccountForm form={form} />}
-              {currentStep === 3 && <EventInfoForm form={form} />}
-              {currentStep === 4 && <ReviewForm form={form} />}
+              {currentStep === 1 && <VehicleForm form={form} />}
+              {currentStep === 2 && <EventInfoForm form={form} />}
+              {currentStep === 3 && <ReportForm form={form} />}
+              {currentStep === 4 && <AddressForm form={form} />}
+              {currentStep === 5 && <AccountForm form={form} />}
+              {currentStep === 6 && <ReviewForm form={form} />}
             </CardContent>
 
             <CardFooter className="flex justify-between mt-4">

@@ -18,18 +18,53 @@ model Affiliate {
   cnh               String
   cnhCategory       String
   cnhExpirationDate String
-  accounts          Account[]
-  addresses         Address[]
-  events            Event[]
+  account           Account[]
+  address           Address[]
+  event             Event[]
+  vehicle           Vehicle[]
+}
+
+model Vehicle {
+  id          String @id @default(uuid())
+  affiliateId String
+
+  brand        String
+  model        String
+  licensePlate String
+  color        String
+  chassiss     String
+  yearModel    String
+  fipeValue    String
+  fuelType     String
+  affiliate    Affiliate @relation(fields: [affiliateId], references: [id])
 }
 
 model Event {
-  id            String    @id @default(uuid())
-  affiliateId   String
-  eventName     String
-  eventLocation String
-  eventType     String
-  affiliate     Affiliate @relation(fields: [affiliateId], references: [id])
+  id                 String @id @default(uuid())
+  affiliateId        String
+  protocol           String
+  type               String
+  location           String
+  policeReportNumber String
+  hasThirdParty      String
+  thirdPartyEmail    String
+  thirdPartyPhone    String
+  driver             String
+
+  affiliate Affiliate @relation(fields: [affiliateId], references: [id])
+
+  report Report[]
+}
+
+model Report {
+  id             String @id @default(uuid())
+  eventId        String
+  description    String
+  apparentDamage String
+  vehiclePhoto   String
+  vehicleVideo   String
+
+  event Event @relation(fields: [eventId], references: [id])
 }
 
 model Address {

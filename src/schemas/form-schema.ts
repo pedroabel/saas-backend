@@ -13,7 +13,28 @@ export const createFormSchema = z
     cnhCategory: z.string(),
     cnhExpirationDate: z.string(),
     //Vehicle
+    brand: z.string(),
+    model: z.string(),
+    licensePlate: z.string(),
+    color: z.string(),
+    chassiss: z.string(),
+    yearModel: z.string(),
+    fipeValue: z.string(),
+    fuelType: z.string(),
+    //Event
+    protocol: z.string(),
+    type: z.string(),
+    location: z.string(),
+    policeReportNumber: z.string(),
+    hasThirdParty: z.string(),
+    thirdPartyEmail: z.string(),
+    thirdPartyPhone: z.string(),
+    driver: z.string(),
     //Report
+    description: z.string(),
+    apparentDamage: z.string(),
+    vehiclePhoto: z.string(),
+    vehicleVideo: z.string(),
     //Terms and Sign
     //Address
     address: z.string(),
@@ -24,10 +45,6 @@ export const createFormSchema = z
     username: z.string(),
     password: z.string(),
     confirmPassword: z.string(),
-    //Event
-    eventName: z.string(),
-    eventType: z.string(),
-    eventLocation: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
