@@ -58,12 +58,6 @@ export async function POST(request: Request) {
             zipCode: data.zipCode,
           },
         },
-        account: {
-          create: {
-            username: data.username,
-            password: data.password, // Certifique-se de hash a senha antes de armazená-la
-          },
-        },
       },
     });
 

@@ -15,7 +15,6 @@ import {
 import { Form } from "@/components/ui/form";
 import { AffiliateForm } from "./affiliate-form";
 import { AddressForm } from "./address-form";
-import { AccountForm } from "./account-form";
 import { ReviewForm } from "./review-form";
 import { EventInfoForm } from "./event-form";
 import { createFormSchema } from "@/schemas/form-schema";
@@ -32,7 +31,7 @@ type Step = {
 const steps: Step[] = [
   {
     id: "affiliate",
-    name: "Affiliate Information",
+    name: "Associado",
     fields: [
       "fullName",
       "phone",
@@ -46,7 +45,7 @@ const steps: Step[] = [
   },
   {
     id: "vehicle",
-    name: "Vehicle",
+    name: "Veiculo",
     fields: [
       "brand",
       "model",
@@ -59,7 +58,7 @@ const steps: Step[] = [
   },
   {
     id: "event",
-    name: "Event",
+    name: "Evento",
     fields: [
       "protocol",
       "type",
@@ -73,15 +72,15 @@ const steps: Step[] = [
   },
   {
     id: "address",
-    name: "Address",
+    name: "Endereço",
     fields: ["address", "city", "state", "zipCode"],
   },
   {
-    id: "account",
-    name: "Account",
-    fields: ["username", "password", "confirmPassword"],
+    id: "report",
+    name: "Relatos",
+    fields: ["address", "city", "state", "zipCode"],
   },
-  { id: "review", name: "Review", fields: [] },
+  { id: "review", name: "Revisao", fields: [] },
 ];
 
 export default function MultiStepForm() {
@@ -120,6 +119,7 @@ export default function MultiStepForm() {
       //Reports
       description: "",
       apparentDamage: "",
+      //boletim de ocorrencia
       vehiclePhotos: [], // Changed to an empty array to match the expected type
       vehicleVideo: "",
 
@@ -128,10 +128,6 @@ export default function MultiStepForm() {
       city: "",
       state: "",
       zipCode: "",
-      //Account
-      username: "",
-      password: "",
-      confirmPassword: "",
     },
     mode: "onChange",
   });
@@ -213,10 +209,9 @@ export default function MultiStepForm() {
               {currentStep === 0 && <AffiliateForm form={form} />}
               {currentStep === 1 && <VehicleForm form={form} />}
               {currentStep === 2 && <EventInfoForm form={form} />}
-              {currentStep === 3 && <ReportForm form={form} />}
-              {currentStep === 4 && <AddressForm form={form} />}
-              {currentStep === 5 && <AccountForm form={form} />}
-              {currentStep === 6 && <ReviewForm form={form} />}
+              {currentStep === 3 && <AddressForm form={form} />}
+              {currentStep === 4 && <ReportForm form={form} />}
+              {currentStep === 5 && <ReviewForm form={form} />}
             </CardContent>
 
             <CardFooter className="flex justify-between mt-4">
@@ -236,10 +231,12 @@ export default function MultiStepForm() {
                 )}
 
                 {currentStep === steps.length - 1 && (
-                  <Button type="submit">Enviar</Button>
+                  //<Button type="submit">Enviar</Button>
+                  <></>
                 )}
+
+                <Button type="submit">Enviar</Button>
               </div>
-              <Button type="submit">Enviar</Button>
             </CardFooter>
           </form>
         </Form>
