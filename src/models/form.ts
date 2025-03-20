@@ -37,10 +37,8 @@ export async function createForm(data: any) {
             create: {
               description: data.description,
               apparentDamage: data.apparentDamage,
-              vehiclePhotos: Array.isArray(data.vehiclePhotos)
-                ? data.vehiclePhotos
-                : [],
-              vehicleVideo: data.vehicleVideo,
+              vehiclePhotos: data.vehiclePhotos || [], // URLs das imagens
+              vehicleVideo: data.vehicleVideo || "",
             },
           },
         },

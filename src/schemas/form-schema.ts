@@ -32,8 +32,8 @@ export const createFormSchema = z.object({
   //Report
   description: z.string(),
   apparentDamage: z.string(),
-  vehiclePhotos: z.string().array(),
-  vehicleVideo: z.string(),
+  vehiclePhotos: z.string().array().optional(), // URLs das imagens
+  vehicleVideo: z.string().optional(),
   //Terms and Sign
   //Address
   address: z.string(),
