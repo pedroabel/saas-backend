@@ -21,6 +21,7 @@ import { createFormSchema } from "@/schemas/form-schema";
 import type { CreateFormData } from "@/types/form";
 import { VehicleForm } from "./vehicle-form";
 import { ReportForm } from "./report-form";
+import { defaultFormValues } from "@/types/form";
 
 type Step = {
   id: string;
@@ -88,47 +89,7 @@ export default function MultiStepForm() {
 
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
-    defaultValues: {
-      //Affiliate
-      fullName: "",
-      phone: "",
-      email: "",
-      rg: "",
-      cpf: "",
-      cnh: "",
-      cnhCategory: "",
-      cnhExpirationDate: "",
-      //Vehicle
-      brand: "",
-      model: "",
-      licensePlate: "",
-      color: "",
-      chassiss: "",
-      yearModel: "",
-      fipeValue: "",
-      fuelType: "",
-      //Event
-      protocol: "",
-      type: "",
-      location: "",
-      policeReportNumber: "",
-      hasThirdParty: "",
-      thirdPartyEmail: "",
-      thirdPartyPhone: "",
-      driver: "",
-      //Reports
-      description: "",
-      apparentDamage: "",
-      //boletim de ocorrencia
-      vehiclePhotos: [], // Changed to an empty array to match the expected type
-      vehicleVideo: "",
-
-      //Address
-      address: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    },
+    defaultValues: defaultFormValues,
     mode: "onChange",
   });
 
