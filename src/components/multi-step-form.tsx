@@ -22,6 +22,7 @@ import type { CreateFormData } from "@/types/form";
 import { VehicleForm } from "./vehicle-form";
 import { ReportForm } from "./report-form";
 import { defaultFormValues } from "@/types/form";
+import { uploadFile } from "@/services/supabase-upload";
 
 type Step = {
   id: string;
@@ -46,7 +47,7 @@ const steps: Step[] = [
   },
   {
     id: "vehicle",
-    name: "Veiculo",
+    name: "Veículo",
     fields: [
       "brand",
       "model",
@@ -79,13 +80,14 @@ const steps: Step[] = [
   {
     id: "report",
     name: "Relatos",
-    fields: ["address", "city", "state", "zipCode"],
+    fields: ["description", "apparentDamage", "vehiclePhotos", "vehicleVideo"],
   },
-  { id: "review", name: "Revisao", fields: [] },
+  { id: "review", name: "Revisão", fields: [] },
 ];
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [files, setFiles] = useState<File[]>([]); // Estado para armazenar os arquivos selecionados
 
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
@@ -108,12 +110,28 @@ export default function MultiStepForm() {
   };
 
   const onSubmit = async (data: CreateFormData) => {
+    console.log(1);
     try {
+      // Faz o upload das imagens para o Supabase Storage
+      const uploadedUrls = await Promise.all(
+        files.map((file) => uploadFile(file, "form"))
+      );
+      console.log(uploadedUrls);
+
+      // Adiciona as URLs das imagens aos dados do formulário
+      const formData = {
+        ...data,
+        vehiclePhotos: uploadedUrls,
+      };
+      console.log(formData);
+
+      // Envia os dados para a API
       const response = await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
+
       if (!response.ok) throw new Error("Erro ao enviar os dados");
       alert("Formulário enviado com sucesso!");
     } catch (error) {
@@ -171,7 +189,9 @@ export default function MultiStepForm() {
               {currentStep === 1 && <VehicleForm form={form} />}
               {currentStep === 2 && <EventInfoForm form={form} />}
               {currentStep === 3 && <AddressForm form={form} />}
-              {currentStep === 4 && <ReportForm form={form} />}
+              {currentStep === 4 && (
+                <ReportForm form={form} files={files} setFiles={setFiles} />
+              )}
               {currentStep === 5 && <ReviewForm form={form} />}
             </CardContent>
 
@@ -192,11 +212,8 @@ export default function MultiStepForm() {
                 )}
 
                 {currentStep === steps.length - 1 && (
-                  //<Button type="submit">Enviar</Button>
-                  <></>
+                  <Button type="submit">Enviar</Button>
                 )}
-
-                <Button type="submit">Enviar</Button>
               </div>
             </CardFooter>
           </form>
