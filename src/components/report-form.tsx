@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
 import {
   FormControl,
@@ -17,13 +17,21 @@ interface ReportFormProps {
 }
 
 export function ReportForm({ form, files, setFiles }: ReportFormProps) {
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]); // URLs temporárias das imagens
+
   const handleFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const selectedFiles = event.target.files;
       if (!selectedFiles || selectedFiles.length === 0) return;
 
-      // Atualiza o estado com os arquivos selecionados
+      // Converte os arquivos para URLs temporárias
+      const urls = Array.from(selectedFiles).map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      // Atualiza o estado com os arquivos selecionados e as URLs temporárias
       setFiles(Array.from(selectedFiles));
+      setPreviewUrls(urls);
     },
     [setFiles]
   );
@@ -84,15 +92,20 @@ export function ReportForm({ form, files, setFiles }: ReportFormProps) {
         />
       </div>
 
-      {/* Exibe os nomes dos arquivos selecionados */}
-      {files.length > 0 && (
+      {/* Exibe as imagens selecionadas */}
+      {previewUrls.length > 0 && (
         <div>
-          <p>Arquivos selecionados:</p>
-          <ul>
-            {files.map((file, index) => (
-              <li key={index}>{file.name}</li>
+          <p>Imagens selecionadas:</p>
+          <div className="flex flex-wrap gap-4">
+            {previewUrls.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt={`Preview ${index + 1}`}
+                className="w-24 h-24 object-cover rounded"
+              />
             ))}
-          </ul>
+          </div>
         </div>
       )}
 
