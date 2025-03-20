@@ -12,12 +12,21 @@ import type { CreateFormData } from "@/types/form";
 
 interface ReportFormProps {
   form: UseFormReturn<CreateFormData>;
-  files: File[]; // Arquivos selecionados
-  setFiles: (files: File[]) => void; // Função para atualizar os arquivos
+  files: File[]; // Arquivos selecionados (imagens)
+  setFiles: (files: File[]) => void; // Função para atualizar os arquivos (imagens)
+  videoFile: File | null; // Arquivo de vídeo selecionado
+  setVideoFile: (file: File | null) => void; // Função para atualizar o vídeo
 }
 
-export function ReportForm({ form, files, setFiles }: ReportFormProps) {
+export function ReportForm({
+  form,
+  files,
+  setFiles,
+  videoFile,
+  setVideoFile,
+}: ReportFormProps) {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]); // URLs temporárias das imagens
+  const [videoPreviewUrl, setVideoPreviewUrl] = useState<string | null>(null); // URL temporária do vídeo
 
   const handleFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +43,21 @@ export function ReportForm({ form, files, setFiles }: ReportFormProps) {
       setPreviewUrls(urls);
     },
     [setFiles]
+  );
+
+  const handleVideoUpload = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedVideo = event.target.files?.[0];
+      if (!selectedVideo) return;
+
+      // Converte o vídeo para uma URL temporária
+      const url = URL.createObjectURL(selectedVideo);
+
+      // Atualiza o estado com o vídeo selecionado e a URL temporária
+      setVideoFile(selectedVideo);
+      setVideoPreviewUrl(url);
+    },
+    [setVideoFile]
   );
 
   return (
@@ -120,18 +144,24 @@ export function ReportForm({ form, files, setFiles }: ReportFormProps) {
               <Input
                 type="file"
                 accept="video/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    field.onChange(file.name); // Ou faça o upload do vídeo aqui, se necessário
-                  }
-                }}
+                onChange={handleVideoUpload}
               />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
+
+      {/* Exibe o vídeo selecionado */}
+      {videoPreviewUrl && (
+        <div>
+          <p>Vídeo selecionado:</p>
+          <video controls className="w-full max-w-md">
+            <source src={videoPreviewUrl} type="video/mp4" />
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+      )}
     </div>
   );
 }

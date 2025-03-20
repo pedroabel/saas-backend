@@ -87,7 +87,8 @@ const steps: Step[] = [
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [files, setFiles] = useState<File[]>([]); // Estado para armazenar os arquivos selecionados
+  const [files, setFiles] = useState<File[]>([]); // Estado para armazenar as imagens selecionadas
+  const [videoFile, setVideoFile] = useState<File | null>(null); // Estado para armazenar o vídeo selecionado
 
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
@@ -110,20 +111,24 @@ export default function MultiStepForm() {
   };
 
   const onSubmit = async (data: CreateFormData) => {
-    console.log(1);
     try {
       // Faz o upload das imagens para o Supabase Storage
-      const uploadedUrls = await Promise.all(
+      const uploadedImageUrls = await Promise.all(
         files.map((file) => uploadFile(file, "form"))
       );
-      console.log(uploadedUrls);
 
-      // Adiciona as URLs das imagens aos dados do formulário
+      // Faz o upload do vídeo para o Supabase Storage (se houver vídeo selecionado)
+      let uploadedVideoUrl = null;
+      if (videoFile) {
+        uploadedVideoUrl = await uploadFile(videoFile, "form");
+      }
+
+      // Adiciona as URLs das imagens e do vídeo aos dados do formulário
       const formData = {
         ...data,
-        vehiclePhotos: uploadedUrls,
+        vehiclePhotos: uploadedImageUrls,
+        vehicleVideo: uploadedVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
       };
-      console.log(formData);
 
       // Envia os dados para a API
       const response = await fetch("/api/form", {
@@ -190,7 +195,13 @@ export default function MultiStepForm() {
               {currentStep === 2 && <EventInfoForm form={form} />}
               {currentStep === 3 && <AddressForm form={form} />}
               {currentStep === 4 && (
-                <ReportForm form={form} files={files} setFiles={setFiles} />
+                <ReportForm
+                  form={form}
+                  files={files}
+                  setFiles={setFiles}
+                  videoFile={videoFile}
+                  setVideoFile={setVideoFile}
+                />
               )}
               {currentStep === 5 && <ReviewForm form={form} />}
             </CardContent>
