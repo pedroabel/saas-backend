@@ -71,20 +71,6 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           control={form.control}
-          name="rg"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Rg</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="cpf"
           render={({ field }) => (
             <FormItem>
@@ -101,10 +87,10 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           control={form.control}
-          name="cnh"
+          name="cnhFile"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Cnh</FormLabel>
+              <FormLabel>Cnh </FormLabel>
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>
@@ -115,10 +101,10 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
 
         <FormField
           control={form.control}
-          name="cnhCategory"
+          name="personalDocument"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Categoria da CNH</FormLabel>
+              <FormLabel>Documento Pessoal</FormLabel>
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>
@@ -128,10 +114,10 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
         />
         <FormField
           control={form.control}
-          name="cnhExpirationDate"
+          name="proofAddres"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Data de Validade da CNH</FormLabel>
+              <FormLabel>Comprovante de Endereço</FormLabel>
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>

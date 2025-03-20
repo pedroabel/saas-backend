@@ -136,7 +136,7 @@ export function ReportForm({
       {/* Campo de vídeo do veículo */}
       <FormField
         control={form.control}
-        name="vehicleVideo"
+        name="reportVideo"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Vídeo do Veículo</FormLabel>

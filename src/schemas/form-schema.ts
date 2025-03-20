@@ -6,11 +6,10 @@ export const createFormSchema = z.object({
   fullName: z.string(),
   phone: z.string(),
   email: z.string(),
-  rg: z.string(),
   cpf: z.string(),
-  cnh: z.string(),
-  cnhCategory: z.string(),
-  cnhExpirationDate: z.string(),
+  cnhFile: z.string(),
+  personalDocument: z.string(),
+  proofAddres: z.string(),
   //Vehicle
   brand: z.string(),
   model: z.string(),
@@ -33,7 +32,7 @@ export const createFormSchema = z.object({
   description: z.string(),
   apparentDamage: z.string(),
   vehiclePhotos: z.string().array().optional(), // URLs das imagens
-  vehicleVideo: z.string().optional(),
+  reportVideo: z.string().optional(),
   //Terms and Sign
   //Address
   address: z.string(),

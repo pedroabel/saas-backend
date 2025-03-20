@@ -38,11 +38,10 @@ const steps: Step[] = [
       "fullName",
       "phone",
       "email",
-      "rg",
       "cpf",
-      "cnh",
-      "cnhCategory",
-      "cnhExpirationDate",
+      "cnhFile",
+      "personalDocument",
+      "proofAddres",
     ],
   },
   {
@@ -80,7 +79,7 @@ const steps: Step[] = [
   {
     id: "report",
     name: "Relatos",
-    fields: ["description", "apparentDamage", "vehiclePhotos", "vehicleVideo"],
+    fields: ["description", "apparentDamage", "vehiclePhotos", "reportVideo"],
   },
   { id: "review", name: "Revisão", fields: [] },
 ];
@@ -127,7 +126,7 @@ export default function MultiStepForm() {
       const formData = {
         ...data,
         vehiclePhotos: uploadedImageUrls,
-        vehicleVideo: uploadedVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
+        reportVideo: uploadedVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
       };
 
       // Envia os dados para a API

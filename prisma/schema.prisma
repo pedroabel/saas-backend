@@ -9,19 +9,18 @@ datasource db {
 }
 
 model Affiliate {
-  id                String    @id @default(uuid())
-  fullName          String
-  phone             String
-  email             String
-  rg                String
-  cpf               String
-  cnh               String
-  cnhCategory       String
-  cnhExpirationDate String
-  account           Account[]
-  address           Address[]
-  event             Event[]
-  vehicle           Vehicle[]
+  id               String    @id @default(uuid())
+  fullName         String
+  phone            String
+  email            String
+  cpf              String
+  cnhFile          String
+  personalDocument String
+  proofAddres      String
+  account          Account[]
+  address          Address[]
+  event            Event[]
+  vehicle          Vehicle[]
 }
 
 model Vehicle {
@@ -62,7 +61,7 @@ model Report {
   description    String
   apparentDamage String
   vehiclePhotos  String[]
-  vehicleVideo   String
+  reportVideo    String
 
   event Event @relation(fields: [eventId], references: [id])
 }

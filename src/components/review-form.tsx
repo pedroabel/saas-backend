@@ -31,12 +31,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                   </dt>
                   <dd>{values.fullName}</dd>
                 </div>
-                <div>
-                  <dt className="text-sm font-medium text-muted-foreground">
-                    Rg
-                  </dt>
-                  <dd>{values.rg}</dd>
-                </div>
+
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
                     Cpf
@@ -47,19 +42,19 @@ export function ReviewForm({ form }: ReviewFormProps) {
                   <dt className="text-sm font-medium text-muted-foreground">
                     Cnh
                   </dt>
-                  <dd>{values.cnh}</dd>
+                  <dd>{values.cnhFile}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
                     Cnh Categoria
                   </dt>
-                  <dd>{values.cnhCategory}</dd>
+                  <dd>{values.personalDocument}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
                     Data de Validade CNH
                   </dt>
-                  <dd>{values.cnhExpirationDate}</dd>
+                  <dd>{values.proofAddres}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
@@ -198,7 +193,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                   <dt className="text-sm font-medium text-muted-foreground">
                     Video do Veiculo
                   </dt>
-                  <dd>{values.vehicleVideo}</dd>
+                  <dd>{values.reportVideo}</dd>
                 </div>
               </dl>
             </div>

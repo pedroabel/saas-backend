@@ -6,11 +6,10 @@ export async function createForm(data: any) {
       fullName: data.fullName,
       phone: data.phone,
       email: data.email,
-      rg: data.rg,
       cpf: data.cpf,
-      cnh: data.cnh,
-      cnhCategory: data.cnhCategory,
-      cnhExpirationDate: data.cnhExpirationDate,
+      cnhFile: data.cnhFile,
+      personalDocument: data.personalDocument,
+      proofAddres: data.proofAddres,
       vehicle: {
         create: {
           brand: data.brand,
@@ -38,7 +37,7 @@ export async function createForm(data: any) {
               description: data.description,
               apparentDamage: data.apparentDamage,
               vehiclePhotos: data.vehiclePhotos || [], // URLs das imagens
-              vehicleVideo: data.vehicleVideo || "",
+              reportVideo: data.reportVideo || "",
             },
           },
         },

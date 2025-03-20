@@ -8,11 +8,10 @@ export const defaultFormValues: CreateFormData = {
   fullName: "",
   phone: "",
   email: "",
-  rg: "",
   cpf: "",
-  cnh: "",
-  cnhCategory: "",
-  cnhExpirationDate: "",
+  cnhFile: "",
+  personalDocument: "",
+  proofAddres: "",
   // Vehicle
   brand: "",
   model: "",
@@ -35,7 +34,7 @@ export const defaultFormValues: CreateFormData = {
   description: "",
   apparentDamage: "",
   vehiclePhotos: [],
-  vehicleVideo: "",
+  reportVideo: "",
   // Address
   address: "",
   city: "",
