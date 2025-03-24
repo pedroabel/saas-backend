@@ -7,9 +7,9 @@ export const createFormSchema = z.object({
   phone: z.string(),
   email: z.string(),
   cpf: z.string(),
-  cnhFile: z.string(),
-  personalDocument: z.string(),
-  proofAddres: z.string(),
+  cnhFile: z.string().array().optional(),
+  personalDocument: z.string().array().optional(),
+  proofAddres: z.string().optional(),
   //Vehicle
   brand: z.string(),
   model: z.string(),

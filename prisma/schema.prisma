@@ -14,8 +14,8 @@ model Affiliate {
   phone            String
   email            String
   cpf              String
-  cnhFile          String
-  personalDocument String
+  cnhFile          String[]
+  personalDocument String[]
   proofAddres      String
   account          Account[]
   address          Address[]

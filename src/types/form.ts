@@ -9,8 +9,8 @@ export const defaultFormValues: CreateFormData = {
   phone: "",
   email: "",
   cpf: "",
-  cnhFile: "",
-  personalDocument: "",
+  cnhFile: [],
+  personalDocument: [],
   proofAddres: "",
   // Vehicle
   brand: "",

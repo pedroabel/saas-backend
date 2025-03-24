@@ -1,7 +1,6 @@
 import type { UseFormReturn } from "react-hook-form";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -9,15 +8,87 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import type { CreateFormData } from "@/types/form";
+import { useCallback, useState } from "react";
 
 interface AffiliateFormProps {
   form: UseFormReturn<CreateFormData>;
+  cnhFiles: File[]; // Arquivos da CNH
+  setCnhFiles: (files: File[]) => void; // Função para atualizar os arquivos da CNH
+  personalDocumentFiles: File[]; // Arquivos do Documento Pessoal
+  setPersonalDocumentFiles: (files: File[]) => void; // Função para atualizar os arquivos do Documento Pessoal
+  proofAddressFiles: File[]; // Arquivos do Comprovante de Endereço
+  setProofAddressFiles: (files: File[]) => void; // Função para atualizar os arquivos do Comprovante de Endereço
 }
 
-export function AffiliateForm({ form }: AffiliateFormProps) {
+export function AffiliateForm({
+  form,
+  setCnhFiles,
+  setPersonalDocumentFiles,
+  setProofAddressFiles,
+}: AffiliateFormProps) {
+  const [cnhPreviewUrls, setCnhPreviewUrls] = useState<string[]>([]); // URLs temporárias das imagens da CNH
+  const [personalDocumentPreviewUrls, setPersonalDocumentPreviewUrls] =
+    useState<string[]>([]); // URLs temporárias das imagens do Documento Pessoal
+  const [proofAddressPreviewUrls, setProofAddressPreviewUrls] = useState<
+    string[]
+  >([]); // URLs temporárias das imagens do Comprovante de Endereço
+
+  const handleCnhFileUpload = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = event.target.files;
+      if (!selectedFiles || selectedFiles.length === 0) return;
+
+      // Converte os arquivos para URLs temporárias
+      const urls = Array.from(selectedFiles).map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      // Atualiza o estado com os arquivos selecionados e as URLs temporárias
+      setCnhFiles(Array.from(selectedFiles));
+      setCnhPreviewUrls(urls);
+    },
+    [setCnhFiles]
+  );
+
+  const handlePersonalDocumentFileUpload = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = event.target.files;
+      if (!selectedFiles || selectedFiles.length === 0) return;
+
+      // Converte os arquivos para URLs temporárias
+      const urls = Array.from(selectedFiles).map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      // Atualiza o estado com os arquivos selecionados e as URLs temporárias
+      setPersonalDocumentFiles(Array.from(selectedFiles));
+      setPersonalDocumentPreviewUrls(urls);
+    },
+    [setPersonalDocumentFiles]
+  );
+
+  const handleProofAddressFileUpload = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = event.target.files;
+      if (!selectedFiles || selectedFiles.length === 0) return;
+
+      // Converte os arquivos para URLs temporárias
+      const urls = Array.from(selectedFiles).map((file) =>
+        URL.createObjectURL(file)
+      );
+
+      // Atualiza o estado com os arquivos selecionados e as URLs temporárias
+      setProofAddressFiles(Array.from(selectedFiles));
+      setProofAddressPreviewUrls(urls);
+    },
+    [setProofAddressFiles]
+  );
+
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold">Informações Pessoais</h2>
+
+      {/* Campo de Nome Completo */}
       <FormField
         control={form.control}
         name="fullName"
@@ -31,11 +102,12 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
                 {...field}
               />
             </FormControl>
-
             <FormMessage />
           </FormItem>
         )}
       />
+
+      {/* Campo de Telefone */}
       <FormField
         control={form.control}
         name="phone"
@@ -45,11 +117,12 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
             <FormControl>
               <Input type="text" placeholder="(__) _____-____" {...field} />
             </FormControl>
-
             <FormMessage />
           </FormItem>
         )}
       />
+
+      {/* Campo de Email */}
       <FormField
         control={form.control}
         name="email"
@@ -63,69 +136,130 @@ export function AffiliateForm({ form }: AffiliateFormProps) {
                 {...field}
               />
             </FormControl>
-
             <FormMessage />
           </FormItem>
         )}
       />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormField
-          control={form.control}
-          name="cpf"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cpf</FormLabel>
-              <FormControl>
-                <Input placeholder="___.___.___-__" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormField
-          control={form.control}
-          name="cnhFile"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cnh </FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      {/* Campo de CPF */}
+      <FormField
+        control={form.control}
+        name="cpf"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>CPF</FormLabel>
+            <FormControl>
+              <Input placeholder="___.___.___-__" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-        <FormField
-          control={form.control}
-          name="personalDocument"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Documento Pessoal</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="proofAddres"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Comprovante de Endereço</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
+      {/* Campo de Upload da CNH */}
+      <FormField
+        control={form.control}
+        name="cnhFile"
+        render={() => (
+          <FormItem>
+            <FormLabel>Fotos da CNH</FormLabel>
+            <FormControl>
+              <Input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleCnhFileUpload}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      {cnhPreviewUrls.length > 0 && (
+        <div>
+          <p>Imagens selecionadas (CNH):</p>
+          <div className="flex flex-wrap gap-4">
+            {cnhPreviewUrls.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt={`Preview CNH ${index + 1}`}
+                className="w-24 h-24 object-cover rounded"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Campo de Upload do Documento Pessoal */}
+      <FormField
+        control={form.control}
+        name="personalDocument"
+        render={() => (
+          <FormItem>
+            <FormLabel>Fotos do Documento Pessoal</FormLabel>
+            <FormControl>
+              <Input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handlePersonalDocumentFileUpload}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      {personalDocumentPreviewUrls.length > 0 && (
+        <div>
+          <p>Imagens selecionadas (Documento Pessoal):</p>
+          <div className="flex flex-wrap gap-4">
+            {personalDocumentPreviewUrls.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt={`Preview Documento ${index + 1}`}
+                className="w-24 h-24 object-cover rounded"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Campo de Upload do Comprovante de Endereço */}
+      <FormField
+        control={form.control}
+        name="proofAddres"
+        render={() => (
+          <FormItem>
+            <FormLabel>Fotos do Comprovante de Endereço</FormLabel>
+            <FormControl>
+              <Input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleProofAddressFileUpload}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      {proofAddressPreviewUrls.length > 0 && (
+        <div>
+          <p>Imagens selecionadas (Comprovante de Endereço):</p>
+          <div className="flex flex-wrap gap-4">
+            {proofAddressPreviewUrls.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt={`Preview Comprovante ${index + 1}`}
+                className="w-24 h-24 object-cover rounded"
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

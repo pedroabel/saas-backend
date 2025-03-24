@@ -18,13 +18,7 @@ interface ReportFormProps {
   setVideoFile: (file: File | null) => void; // Função para atualizar o vídeo
 }
 
-export function ReportForm({
-  form,
-  files,
-  setFiles,
-  videoFile,
-  setVideoFile,
-}: ReportFormProps) {
+export function ReportForm({ form, setFiles, setVideoFile }: ReportFormProps) {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]); // URLs temporárias das imagens
   const [videoPreviewUrl, setVideoPreviewUrl] = useState<string | null>(null); // URL temporária do vídeo
 
@@ -99,7 +93,7 @@ export function ReportForm({
         <FormField
           control={form.control}
           name="vehiclePhotos"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>Fotos do Veículo</FormLabel>
               <FormControl>
@@ -137,7 +131,7 @@ export function ReportForm({
       <FormField
         control={form.control}
         name="reportVideo"
-        render={({ field }) => (
+        render={() => (
           <FormItem>
             <FormLabel>Vídeo do Veículo</FormLabel>
             <FormControl>

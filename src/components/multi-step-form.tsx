@@ -86,8 +86,15 @@ const steps: Step[] = [
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [files, setFiles] = useState<File[]>([]); // Estado para armazenar as imagens selecionadas
-  const [videoFile, setVideoFile] = useState<File | null>(null); // Estado para armazenar o vídeo selecionado
+
+  // Estados para os arquivos de cada campo de upload
+  const [cnhFiles, setCnhFiles] = useState<File[]>([]); // Arquivos da CNH
+  const [personalDocumentFiles, setPersonalDocumentFiles] = useState<File[]>(
+    []
+  ); // Arquivos do Documento Pessoal
+  const [proofAddressFiles, setProofAddressFiles] = useState<File[]>([]); // Arquivos do Comprovante de Endereço
+  const [vehicleFiles, setVehicleFiles] = useState<File[]>([]); // Arquivos das fotos do veículo
+  const [videoFile, setVideoFile] = useState<File | null>(null); // Arquivo de vídeo do veículo
 
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
@@ -111,22 +118,40 @@ export default function MultiStepForm() {
 
   const onSubmit = async (data: CreateFormData) => {
     try {
-      // Faz o upload das imagens para o Supabase Storage
-      const uploadedImageUrls = await Promise.all(
-        files.map((file) => uploadFile(file, "form"))
+      // Faz o upload das imagens da CNH
+      const cnhUrls = await Promise.all(
+        cnhFiles.map((file) => uploadFile(file, "form"))
       );
 
-      // Faz o upload do vídeo para o Supabase Storage (se houver vídeo selecionado)
-      let uploadedVideoUrl = null;
+      // Faz o upload das imagens do Documento Pessoal
+      const personalDocumentUrls = await Promise.all(
+        personalDocumentFiles.map((file) => uploadFile(file, "form"))
+      );
+
+      // Faz o upload das imagens do Comprovante de Endereço
+      const proofAddressUrls = await Promise.all(
+        proofAddressFiles.map((file) => uploadFile(file, "form"))
+      );
+
+      // Faz o upload das imagens do veículo
+      const vehicleImageUrls = await Promise.all(
+        vehicleFiles.map((file) => uploadFile(file, "form"))
+      );
+
+      // Faz o upload do vídeo do veículo (se houver)
+      let vehicleVideoUrl = null;
       if (videoFile) {
-        uploadedVideoUrl = await uploadFile(videoFile, "form");
+        vehicleVideoUrl = await uploadFile(videoFile, "form");
       }
 
       // Adiciona as URLs das imagens e do vídeo aos dados do formulário
       const formData = {
         ...data,
-        vehiclePhotos: uploadedImageUrls,
-        reportVideo: uploadedVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
+        cnhFile: cnhUrls,
+        personalDocument: personalDocumentUrls,
+        proofAddress: proofAddressUrls,
+        vehiclePhotos: vehicleImageUrls,
+        vehicleVideo: vehicleVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
       };
 
       // Envia os dados para a API
@@ -189,15 +214,25 @@ export default function MultiStepForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
-              {currentStep === 0 && <AffiliateForm form={form} />}
+              {currentStep === 0 && (
+                <AffiliateForm
+                  form={form}
+                  cnhFiles={cnhFiles}
+                  setCnhFiles={setCnhFiles}
+                  personalDocumentFiles={personalDocumentFiles}
+                  setPersonalDocumentFiles={setPersonalDocumentFiles}
+                  proofAddressFiles={proofAddressFiles}
+                  setProofAddressFiles={setProofAddressFiles}
+                />
+              )}
               {currentStep === 1 && <VehicleForm form={form} />}
               {currentStep === 2 && <EventInfoForm form={form} />}
               {currentStep === 3 && <AddressForm form={form} />}
               {currentStep === 4 && (
                 <ReportForm
                   form={form}
-                  files={files}
-                  setFiles={setFiles}
+                  files={vehicleFiles}
+                  setFiles={setVehicleFiles}
                   videoFile={videoFile}
                   setVideoFile={setVideoFile}
                 />

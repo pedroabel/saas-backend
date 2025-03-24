@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export async function createForm(data: any) {
   return await prisma.affiliate.create({
@@ -7,9 +7,9 @@ export async function createForm(data: any) {
       phone: data.phone,
       email: data.email,
       cpf: data.cpf,
-      cnhFile: data.cnhFile,
-      personalDocument: data.personalDocument,
-      proofAddres: data.proofAddres,
+      cnhFile: data.cnhFile || [],
+      personalDocument: data.personalDocument || [],
+      proofAddres: data.proofAddres || "",
       vehicle: {
         create: {
           brand: data.brand,
