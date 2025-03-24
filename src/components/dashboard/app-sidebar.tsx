@@ -41,27 +41,27 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: IconLayoutDashboard,
     },
     {
       title: "Fila",
-      url: "#",
+      url: "/dashboard/fila",
       icon: IconLayersSubtract,
     },
     {
       title: "Eventos",
-      url: "#",
+      url: "/dashboard/eventos",
       icon: IconListDetails,
     },
     {
       title: "Relatorios",
-      url: "#",
+      url: "/dashboard/relatorios",
       icon: IconChartBar,
     },
     {
       title: "Associados",
-      url: "#",
+      url: "/dashboard/associados",
       icon: IconUsers,
     },
   ],
@@ -116,12 +116,12 @@ const data = {
   navSecondary: [
     {
       title: "Configurações",
-      url: "#",
+      url: "/dashboard/configuracao",
       icon: IconSettings,
     },
     {
       title: "Suporte",
-      url: "#",
+      url: "/dashboard/suporte",
       icon: IconHelp,
     },
     // {
@@ -133,17 +133,17 @@ const data = {
   organizations: [
     {
       name: "Organização",
-      url: "#",
+      url: "/dashboard/organizacao",
       icon: IconBuildingArch,
     },
     {
       name: "Serviços",
-      url: "#",
+      url: "/dashboard/servicos",
       icon: IconAdjustmentsHorizontal,
     },
     {
       name: "Membros",
-      url: "#",
+      url: "/dashboard/membros",
       icon: IconUsersGroup,
     },
   ],
