@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "event": "202403050001",
+    "type": "Incêndio",
+    "status": "Em andamento",
+    "affiliate": "Carlos Mendes",
+    "date": "05/03/2024"
+  },
+  {
+    "id": 2,
+    "event": "202403240002",
+    "type": "Furto",
+    "status": "Concluído",
+    "affiliate": "Mariana Souza",
+    "date": "24/03/2024"
+  },
+  {
+    "id": 3,
+    "event": "202403130003",
+    "type": "Colisão",
+    "status": "Concluído",
+    "affiliate": "Ricardo Oliveira",
+    "date": "13/03/2024"
+  },
+  {
+    "id": 4,
+    "event": "202403230004",
+    "type": "Roubo",
+    "status": "Concluído",
+    "affiliate": "Fernanda Lima",
+    "date": "23/03/2024"
+  },
+  {
+    "id": 5,
+    "event": "202403160005",
+    "type": "Incêndio",
+    "status": "Em andamento",
+    "affiliate": "Jorge Silva",
+    "date": "16/03/2024"
+  },
+  {
+    "id": 6,
+    "event": "202403080006",
+    "type": "Furto",
+    "status": "Em andamento",
+    "affiliate": "Beatriz Santos",
+    "date": "08/03/2024"
+  },
+  {
+    "id": 7,
+    "event": "202403210007",
+    "type": "Colisão",
+    "status": "Em andamento",
+    "affiliate": "André Ferreira",
+    "date": "21/03/2024"
+  },
+  {
+    "id": 8,
+    "event": "202403260008",
+    "type": "Alagamento",
+    "status": "Concluído",
+    "affiliate": "Letícia Carvalho",
+    "date": "26/03/2024"
+  },
+  {
+    "id": 9,
+    "event": "202403230009",
+    "type": "Roubo",
+    "status": "Concluído",
+    "affiliate": "Eduardo Ramos",
+    "date": "23/03/2024"
+  },
+  {
+    "id": 10,
+    "event": "202403280010",
+    "type": "Colisão",
+    "status": "Concluído",
+    "affiliate": "Patrícia Almeida",
+    "date": "28/03/2024"
+  }
+]
