@@ -18,10 +18,10 @@ import {
   IconLayoutDashboard,
 } from "@tabler/icons-react";
 
-import { NavOrganizations } from "@/components/nav-organizations";
-import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
+import { NavOrganizations } from "@/components/dashboard/nav-organizations";
+import { NavMain } from "@/components/dashboard/nav-main";
+import { NavSecondary } from "@/components/dashboard/nav-secondary";
+import { NavUser } from "@/components/dashboard/nav-user";
 import {
   Sidebar,
   SidebarContent,
