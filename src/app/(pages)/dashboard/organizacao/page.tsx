@@ -1,3 +1,11 @@
+import { SiteHeader } from "@/components/dashboard/site-header";
+
 export default function OrganizacaoPage() {
-  return <>Page - Organização</>;
+  return (
+    <>
+      <>
+        <SiteHeader title="Organização" />
+      </>
+    </>
+  );
 }

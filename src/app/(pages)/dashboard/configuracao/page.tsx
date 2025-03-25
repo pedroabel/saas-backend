@@ -1,11 +1,9 @@
 import { SiteHeader } from "@/components/dashboard/site-header";
 
-export default function MembrosPage() {
+export default function ConfiguracoesPage() {
   return (
     <>
-      <>
-        <SiteHeader title="Membros" />
-      </>
+      <SiteHeader title="Configurações" />
     </>
   );
 }
