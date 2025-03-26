@@ -128,12 +128,12 @@ const chartConfig = {
     label: "Visitors",
   },
   desktop: {
-    label: "Desktop",
+    label: "Finalizados",
     color: "var(--primary)",
   },
   mobile: {
-    label: "Mobile",
-    color: "var(--primary)",
+    label: "Cancelados",
+    color: "#FF0000",
   },
 } satisfies ChartConfig;
 

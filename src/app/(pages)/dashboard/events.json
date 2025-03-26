@@ -1,0 +1,161 @@
+[
+  {
+    "protocol": "20250212041",
+    "registerDate": "12/02/2023",
+    "status": "Recurso",
+    "type": "Colisão",
+    "possuiTerceiro": "Sim",
+    "local": "Rua Diramir Loureiro, 634 - Tirol, Belo Horizonte - MG",
+    "bo": "CIAD/P-2013-1244469",
+    "affiliate": [
+      {
+        "name": "Pedro Augusto da Silva Abel",
+        "phone": "(19) 98391-4162",
+        "email": "pedrooabell@gmail.com",
+        "vehicle": {
+          "brand": "Honda",
+          "model": "Civic",
+          "year": "2002",
+          "color": "Verde Escuro"
+        },
+        "address": {
+          "address": "Av. Ipe Roxo, 610 - Sumaré, SP"
+        }
+      }
+    ],
+    "third": [
+      {
+        "id": "#12324",
+        "type": "Implant",
+        "date": "12 Jun 2023",
+        "result": "Well done",
+        "payment": "Pending"
+      },
+      {
+        "id": "#20324",
+        "type": "Route canal",
+        "date": "4 May 2023",
+        "result": "Well done",
+        "payment": "Paid"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Agreement_Meditation.zip",
+        "size": "2.3 mb"
+      },
+      {
+        "name": "Provision of information.pdf",
+        "size": "1.2 mb"
+      }
+    ]
+  },
+  {
+    "protocol": "20250315052",
+    "registerDate": "15/03/2023",
+    "status": "Em Análise",
+    "type": "Furto",
+    "possuiTerceiro": "Não",
+    "local": "Av. Paulista, 1200 - São Paulo - SP",
+    "bo": "CIAD/P-2015-567898",
+    "affiliate": [
+      {
+        "name": "Mariana Lopes Ferreira",
+        "phone": "(11) 98234-9876",
+        "email": "mariana.lopes@gmail.com",
+        "vehicle": {
+          "brand": "Toyota",
+          "model": "Corolla",
+          "year": "2015",
+          "color": "Branco"
+        },
+        "address": {
+          "address": "Rua das Flores, 123 - São Paulo, SP"
+        }
+      }
+    ],
+    "third": [],
+    "documents": [
+      {
+        "name": "Furto_Registro.pdf",
+        "size": "900 kb"
+      }
+    ]
+  },
+  {
+    "protocol": "20250418073",
+    "registerDate": "18/04/2023",
+    "status": "Finalizado",
+    "type": "Dano Ambiental",
+    "possuiTerceiro": "Sim",
+    "local": "Estrada Municipal, 45 - Campinas - SP",
+    "bo": "CIAD/P-2017-893221",
+    "affiliate": [
+      {
+        "name": "Carlos Eduardo Nascimento",
+        "phone": "(19) 99988-7766",
+        "email": "carlos.nascimento@hotmail.com",
+        "vehicle": {
+          "brand": "Ford",
+          "model": "EcoSport",
+          "year": "2018",
+          "color": "Prata"
+        },
+        "address": {
+          "address": "Rua das Palmeiras, 890 - Campinas, SP"
+        }
+      }
+    ],
+    "third": [
+      {
+        "id": "#30987",
+        "type": "Environmental Cleanup",
+        "date": "20 Apr 2023",
+        "result": "Completed",
+        "payment": "Paid"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Environmental_Report.pdf",
+        "size": "3.1 mb"
+      },
+      {
+        "name": "Cleanup_Costs.xlsx",
+        "size": "1.8 mb"
+      }
+    ]
+  },
+  {
+    "protocol": "20250615123",
+    "registerDate": "15/06/2023",
+    "status": "Aberto",
+    "type": "Incêndio",
+    "possuiTerceiro": "Não",
+    "local": "Av. Brasil, 1000 - Rio de Janeiro - RJ",
+    "bo": "CIAD/P-2023-111222",
+    "affiliate": [
+      {
+        "name": "Roberto Menezes Lima",
+        "phone": "(21) 98564-3210",
+        "email": "roberto.m.lima@yahoo.com",
+        "vehicle": {
+          "brand": "Volkswagen",
+          "model": "Gol",
+          "year": "2012",
+          "color": "Vermelho"
+        },
+        "address": {
+          "address": "Rua do Fogo, 88 - Rio de Janeiro, RJ"
+        }
+      }
+    ],
+    "third": [],
+    "documents": [
+      {
+        "name": "Fire_Report.pdf",
+        "size": "1.5 mb"
+      }
+    ]
+  }
+]

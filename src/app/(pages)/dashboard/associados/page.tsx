@@ -1,6 +1,6 @@
-import { DataTable } from "@/components/dashboard/data-table";
+import { DataTable } from "@/components/dashboard/data-affiliate-table";
 import { SiteHeader } from "@/components/dashboard/site-header";
-import data from "../data.json";
+import data from "../data-affiliate.json";
 export default function AssociadosPage() {
   return (
     <>

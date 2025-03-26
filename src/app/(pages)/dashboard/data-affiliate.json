@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "affiliate": "Pedro Augusto da Silva Abel",
+    "email": "pedrooabelL@gmail.com",
+    "telefone": "(19) 99342-4851",
+    "cpf": "152.612.231-12",
+    "date": "05/03/2024"
+  },
+  {
+    "id": 2,
+    "affiliate": "Mariana Souza Ferreira",
+    "email": "mariana.ferreira@gmail.com",
+    "telefone": "(11) 99876-5432",
+    "cpf": "321.654.987-10",
+    "date": "10/03/2024"
+  },
+  {
+    "id": 3,
+    "affiliate": "Carlos Eduardo Lima",
+    "email": "carlos.lima@hotmail.com",
+    "telefone": "(21) 98765-4321",
+    "cpf": "987.123.654-09",
+    "date": "15/03/2024"
+  },
+  {
+    "id": 4,
+    "affiliate": "Fernanda Oliveira Santos",
+    "email": "fernanda.santos@yahoo.com",
+    "telefone": "(31) 99654-3210",
+    "cpf": "654.987.321-08",
+    "date": "20/03/2024"
+  },
+  {
+    "id": 5,
+    "affiliate": "Roberto Mendes Alves",
+    "email": "roberto.alves@outlook.com",
+    "telefone": "(41) 98523-1478",
+    "cpf": "123.789.456-07",
+    "date": "25/03/2024"
+  },
+  {
+    "id": 6,
+    "affiliate": "Juliana Costa Ribeiro",
+    "email": "juliana.ribeiro@gmail.com",
+    "telefone": "(51) 98741-2589",
+    "cpf": "741.852.963-06",
+    "date": "30/03/2024"
+  },
+  {
+    "id": 7,
+    "affiliate": "André Luiz Martins",
+    "email": "andre.martins@hotmail.com",
+    "telefone": "(61) 99632-8745",
+    "cpf": "369.258.147-05",
+    "date": "04/04/2024"
+  },
+  {
+    "id": 8,
+    "affiliate": "Tatiane Rodrigues Lima",
+    "email": "tatiane.lima@yahoo.com",
+    "telefone": "(71) 99587-4123",
+    "cpf": "258.147.369-04",
+    "date": "08/04/2024"
+  },
+  {
+    "id": 9,
+    "affiliate": "Gabriel Fonseca Cardoso",
+    "email": "gabriel.cardoso@outlook.com",
+    "telefone": "(81) 98756-3241",
+    "cpf": "147.369.258-03",
+    "date": "12/04/2024"
+  },
+  {
+    "id": 10,
+    "affiliate": "Renata Alves Monteiro",
+    "email": "renata.monteiro@gmail.com",
+    "telefone": "(91) 99852-7413",
+    "cpf": "963.852.741-02",
+    "date": "16/04/2024"
+  },
+  {
+    "id": 11,
+    "affiliate": "Eduardo Vasconcelos",
+    "email": "eduardo.vasconcelos@hotmail.com",
+    "telefone": "(85) 99412-3658",
+    "cpf": "852.741.963-01",
+    "date": "20/04/2024"
+  },
+  {
+    "id": 12,
+    "affiliate": "Camila Pereira Souza",
+    "email": "camila.souza@yahoo.com",
+    "telefone": "(35) 99541-2369",
+    "cpf": "369.741.852-00",
+    "date": "24/04/2024"
+  },
+  {
+    "id": 13,
+    "affiliate": "Vinícius Barbosa Silva",
+    "email": "vinicius.silva@gmail.com",
+    "telefone": "(45) 99325-8741",
+    "cpf": "741.963.852-99",
+    "date": "28/04/2024"
+  },
+  {
+    "id": 14,
+    "affiliate": "Larissa Gomes Almeida",
+    "email": "larissa.almeida@outlook.com",
+    "telefone": "(55) 98741-2365",
+    "cpf": "852.369.741-98",
+    "date": "02/05/2024"
+  },
+  {
+    "id": 15,
+    "affiliate": "Ricardo Nogueira Teles",
+    "email": "ricardo.teles@hotmail.com",
+    "telefone": "(65) 99874-1236",
+    "cpf": "741.852.963-97",
+    "date": "06/05/2024"
+  },
+  {
+    "id": 16,
+    "affiliate": "Beatriz Menezes Farias",
+    "email": "beatriz.farias@yahoo.com",
+    "telefone": "(75) 98763-2541",
+    "cpf": "963.741.852-96",
+    "date": "10/05/2024"
+  },
+  {
+    "id": 17,
+    "affiliate": "Henrique Batista Coelho",
+    "email": "henrique.coelho@gmail.com",
+    "telefone": "(85) 99632-7854",
+    "cpf": "258.963.741-95",
+    "date": "14/05/2024"
+  },
+  {
+    "id": 18,
+    "affiliate": "Vanessa Duarte Lima",
+    "email": "vanessa.lima@hotmail.com",
+    "telefone": "(95) 98547-1236",
+    "cpf": "741.258.963-94",
+    "date": "18/05/2024"
+  },
+  {
+    "id": 19,
+    "affiliate": "Felipe Rocha Cavalcante",
+    "email": "felipe.cavalcante@yahoo.com",
+    "telefone": "(12) 99741-3658",
+    "cpf": "963.258.741-93",
+    "date": "22/05/2024"
+  },
+  {
+    "id": 20,
+    "affiliate": "Amanda Xavier Porto",
+    "email": "amanda.porto@gmail.com",
+    "telefone": "(22) 98741-2365",
+    "cpf": "852.963.741-92",
+    "date": "26/05/2024"
+  },
+  {
+    "id": 21,
+    "affiliate": "Leonardo Siqueira Campos",
+    "email": "leonardo.campos@hotmail.com",
+    "telefone": "(32) 99874-5214",
+    "cpf": "741.369.852-91",
+    "date": "30/05/2024"
+  }
+]
