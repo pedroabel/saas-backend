@@ -77,22 +77,22 @@ export function SectionCards() {
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Associados Ativos</CardDescription>
+          <CardDescription>Total de Associados</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            4,5%
+            45
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
               <IconTrendingUp />
-              +4.5%
+              +12.5%
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Crescimento constante <IconTrendingUp className="size-4" />
+            Retenção de associados <IconTrendingUp className="size-4" />
           </div>
-          <div className="text-muted-foreground">Dentro das expectativas</div>
+          <div className="text-muted-foreground">Engajamento acima da meta</div>
         </CardFooter>
       </Card>
     </div>

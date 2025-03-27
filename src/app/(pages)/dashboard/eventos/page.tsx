@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { DataTable } from "@/components/dashboard/data-event-table";
 import { SiteHeader } from "@/components/dashboard/site-header";
 import data from "../data-event.json";
@@ -5,6 +6,9 @@ import data from "../data-event.json";
 export default function EventosPage() {
   return (
     <>
+      <Head>
+        <title>Sinpro - Eventos</title>
+      </Head>
       <SiteHeader title="Eventos" />
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">

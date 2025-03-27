@@ -222,8 +222,8 @@ export default function FilaPage() {
                   <Tabs defaultValue="all">
                     <TabsList className="grid grid-cols-3 w-full">
                       <TabsTrigger value="all">Todos</TabsTrigger>
-                      <TabsTrigger value="oldest">Na Fila</TabsTrigger>
-                      <TabsTrigger value="newest">Fora da Fila</TabsTrigger>
+                      <TabsTrigger value="oldest">Em espera</TabsTrigger>
+                      <TabsTrigger value="newest">Andamento</TabsTrigger>
                     </TabsList>
                   </Tabs>
 

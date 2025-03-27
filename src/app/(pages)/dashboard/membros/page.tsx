@@ -1,11 +1,13 @@
+import Head from "next/head";
 import { SiteHeader } from "@/components/dashboard/site-header";
 
 export default function MembrosPage() {
   return (
     <>
-      <>
-        <SiteHeader title="Membros" />
-      </>
+      <Head>
+        <title>Sinpro - Membros</title>
+      </Head>
+      <SiteHeader title="Membros" />
     </>
   );
 }
