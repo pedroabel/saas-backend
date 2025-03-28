@@ -18,7 +18,6 @@ import {
   IconLayoutDashboard,
 } from "@tabler/icons-react";
 
-import { NavOrganizations } from "@/components/dashboard/nav-organizations";
 import { NavMain } from "@/components/dashboard/nav-main";
 import { NavSecondary } from "@/components/dashboard/nav-secondary";
 import { NavUser } from "@/components/dashboard/nav-user";

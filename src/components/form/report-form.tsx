@@ -29,14 +29,14 @@ export function ReportForm({ form, setFiles, setVideoFile }: ReportFormProps) {
 
       // Converte os arquivos para URLs temporárias
       const urls = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file)
+        URL.createObjectURL(file),
       );
 
       // Atualiza o estado com os arquivos selecionados e as URLs temporárias
       setFiles(Array.from(selectedFiles));
       setPreviewUrls(urls);
     },
-    [setFiles]
+    [setFiles],
   );
 
   const handleVideoUpload = useCallback(
@@ -51,7 +51,7 @@ export function ReportForm({ form, setFiles, setVideoFile }: ReportFormProps) {
       setVideoFile(selectedVideo);
       setVideoPreviewUrl(url);
     },
-    [setVideoFile]
+    [setVideoFile],
   );
 
   return (

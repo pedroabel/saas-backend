@@ -436,7 +436,7 @@ export default function FilaPage() {
                                   </div>
                                 )}
                               </div>
-                            )
+                            ),
                           )}
                         </div>
                       </div>

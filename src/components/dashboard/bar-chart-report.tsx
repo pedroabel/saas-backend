@@ -782,7 +782,7 @@ export function BarChartReport() {
       alagamento: chartData.reduce((acc, curr) => acc + curr.alagamento, 0),
       incendio: chartData.reduce((acc, curr) => acc + curr.incendio, 0),
     }),
-    []
+    [],
   );
 
   return (
@@ -811,7 +811,7 @@ export function BarChartReport() {
                   </span>
                 </button>
               );
-            }
+            },
           )}
         </div>
       </CardHeader>

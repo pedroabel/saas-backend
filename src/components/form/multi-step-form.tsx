@@ -90,7 +90,7 @@ export default function MultiStepForm() {
   // Estados para os arquivos de cada campo de upload
   const [cnhFiles, setCnhFiles] = useState<File[]>([]); // Arquivos da CNH
   const [personalDocumentFiles, setPersonalDocumentFiles] = useState<File[]>(
-    []
+    [],
   ); // Arquivos do Documento Pessoal
   const [proofAddressFiles, setProofAddressFiles] = useState<File[]>([]); // Arquivos do Comprovante de Endereço
   const [vehicleFiles, setVehicleFiles] = useState<File[]>([]); // Arquivos das fotos do veículo
@@ -120,22 +120,22 @@ export default function MultiStepForm() {
     try {
       // Faz o upload das imagens da CNH
       const cnhUrls = await Promise.all(
-        cnhFiles.map((file) => uploadFile(file, "form"))
+        cnhFiles.map((file) => uploadFile(file, "form")),
       );
 
       // Faz o upload das imagens do Documento Pessoal
       const personalDocumentUrls = await Promise.all(
-        personalDocumentFiles.map((file) => uploadFile(file, "form"))
+        personalDocumentFiles.map((file) => uploadFile(file, "form")),
       );
 
       // Faz o upload das imagens do Comprovante de Endereço
       const proofAddressUrls = await Promise.all(
-        proofAddressFiles.map((file) => uploadFile(file, "form"))
+        proofAddressFiles.map((file) => uploadFile(file, "form")),
       );
 
       // Faz o upload das imagens do veículo
       const vehicleImageUrls = await Promise.all(
-        vehicleFiles.map((file) => uploadFile(file, "form"))
+        vehicleFiles.map((file) => uploadFile(file, "form")),
       );
 
       // Faz o upload do vídeo do veículo (se houver)

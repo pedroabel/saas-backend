@@ -40,14 +40,14 @@ export function AffiliateForm({
 
       // Converte os arquivos para URLs temporárias
       const urls = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file)
+        URL.createObjectURL(file),
       );
 
       // Atualiza o estado com os arquivos selecionados e as URLs temporárias
       setCnhFiles(Array.from(selectedFiles));
       setCnhPreviewUrls(urls);
     },
-    [setCnhFiles]
+    [setCnhFiles],
   );
 
   const handlePersonalDocumentFileUpload = useCallback(
@@ -57,14 +57,14 @@ export function AffiliateForm({
 
       // Converte os arquivos para URLs temporárias
       const urls = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file)
+        URL.createObjectURL(file),
       );
 
       // Atualiza o estado com os arquivos selecionados e as URLs temporárias
       setPersonalDocumentFiles(Array.from(selectedFiles));
       setPersonalDocumentPreviewUrls(urls);
     },
-    [setPersonalDocumentFiles]
+    [setPersonalDocumentFiles],
   );
 
   const handleProofAddressFileUpload = useCallback(
@@ -74,14 +74,14 @@ export function AffiliateForm({
 
       // Converte os arquivos para URLs temporárias
       const urls = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file)
+        URL.createObjectURL(file),
       );
 
       // Atualiza o estado com os arquivos selecionados e as URLs temporárias
       setProofAddressFiles(Array.from(selectedFiles));
       setProofAddressPreviewUrls(urls);
     },
-    [setProofAddressFiles]
+    [setProofAddressFiles],
   );
 
   return (
