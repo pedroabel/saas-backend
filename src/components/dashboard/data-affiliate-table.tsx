@@ -98,6 +98,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Search } from "lucide-react";
 
 export const schema = z.object({
   id: z.number(),
@@ -326,31 +327,11 @@ export function DataTable({
         <Label htmlFor="view-selector" className="sr-only">
           Ver
         </Label>
-        <Select defaultValue="outline">
-          <SelectTrigger
-            className="flex w-fit @4xl/main:hidden"
-            size="sm"
-            id="view-selector"
-          >
-            <SelectValue placeholder="Select a view" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="outline">Em Andamento</SelectItem>
-            <SelectItem value="past-performance">Negado</SelectItem>
-            <SelectItem value="key-personnel">Finalizado</SelectItem>
-            <SelectItem value="focus-documents">Cancelado</SelectItem>
-          </SelectContent>
-        </Select>
-        <TabsList className="**:data-[slot=badge]:bg-muted-foreground/0 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-          <TabsTrigger value="outline">Em Andamento</TabsTrigger>
-          <TabsTrigger value="past-performance">
-            Negado <Badge variant="secondary">3</Badge>
-          </TabsTrigger>
-          <TabsTrigger value="key-personnel">
-            Finalizado <Badge variant="secondary">2</Badge>
-          </TabsTrigger>
-          <TabsTrigger value="focus-documents">Cancelado</TabsTrigger>
-        </TabsList>
+        <div className="relative">
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Procurar" className="pl-8" />
+        </div>
+
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
