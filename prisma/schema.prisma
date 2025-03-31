@@ -16,7 +16,7 @@ model Affiliate {
   cpf              String
   cnhFile          String[]
   personalDocument String[]
-  proofAddres      String
+  proofAddress     String
   account          Account[]
   address          Address[]
   event            Event[]
@@ -31,7 +31,7 @@ model Vehicle {
   model        String
   licensePlate String
   color        String
-  chassiss     String
+  chassis      String
   yearModel    String
   fipeValue    String
   fuelType     String

@@ -41,7 +41,7 @@ const steps: Step[] = [
       "cpf",
       "cnhFile",
       "personalDocument",
-      "proofAddres",
+      "proofAddress",
     ],
   },
   {

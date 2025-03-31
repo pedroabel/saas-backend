@@ -54,7 +54,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                   <dt className="text-sm font-medium text-muted-foreground">
                     Data de Validade CNH
                   </dt>
-                  <dd>{values.proofAddres}</dd>
+                  <dd>{values.proofAddress}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
@@ -103,7 +103,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                   <dt className="text-sm font-medium text-muted-foreground">
                     Chassi
                   </dt>
-                  <dd>{values.chassiss}</dd>
+                  <dd>{values.chassis}</dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
@@ -119,7 +119,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Combustivel
+                    Combustível
                   </dt>
                   <dd>{values.fuelType}</dd>
                 </div>
@@ -143,7 +143,7 @@ export function ReviewForm({ form }: ReviewFormProps) {
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    Boletim de Ocorrencia
+                    Boletim de Ocorrência
                   </dt>
                   <dd>{values.policeReportNumber}</dd>
                 </div>

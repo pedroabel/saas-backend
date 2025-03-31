@@ -9,14 +9,14 @@ export async function createForm(data: any) {
       cpf: data.cpf,
       cnhFile: data.cnhFile || [],
       personalDocument: data.personalDocument || [],
-      proofAddres: data.proofAddres || "",
+      proofAddress: data.proofAddress || "",
       vehicle: {
         create: {
           brand: data.brand,
           model: data.model,
           licensePlate: data.licensePlate,
           color: data.color,
-          chassiss: data.chassiss,
+          chassis: data.chassis,
           yearModel: data.yearModel,
           fipeValue: data.fipeValue,
           fuelType: data.fuelType,

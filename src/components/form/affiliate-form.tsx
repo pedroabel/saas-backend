@@ -229,7 +229,7 @@ export function AffiliateForm({
       {/* Campo de Upload do Comprovante de Endereço */}
       <FormField
         control={form.control}
-        name="proofAddres"
+        name="proofAddress"
         render={() => (
           <FormItem>
             <FormLabel>Fotos do Comprovante de Endereço</FormLabel>
