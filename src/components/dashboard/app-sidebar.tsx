@@ -35,7 +35,7 @@ const data = {
   user: {
     name: "Pedro Abel",
     email: "ti@clubeprosegur.com.br",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "https://github.com/pedroabel.png",
   },
   navMain: [
     {
@@ -54,7 +54,7 @@ const data = {
       icon: IconListDetails,
     },
     {
-      title: "Relatorios",
+      title: "Relatórios",
       url: "/dashboard/relatorios",
       icon: IconChartBar,
     },

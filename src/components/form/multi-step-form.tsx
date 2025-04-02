@@ -92,7 +92,7 @@ export default function MultiStepForm() {
   const [personalDocumentFiles, setPersonalDocumentFiles] = useState<File[]>(
     [],
   ); // Arquivos do Documento Pessoal
-  const [proofAddressFiles, setProofAddressFiles] = useState<File[]>([]); // Arquivos do Comprovante de Endereço
+  const [proofAddressFile, setProofAddressFile] = useState<File | null>(null); // Arquivos do Comprovante de Endereço
   const [vehicleFiles, setVehicleFiles] = useState<File[]>([]); // Arquivos das fotos do veículo
   const [videoFile, setVideoFile] = useState<File | null>(null); // Arquivo de vídeo do veículo
 
@@ -129,10 +129,11 @@ export default function MultiStepForm() {
       );
 
       // Faz o upload das imagens do Comprovante de Endereço
-      const proofAddressUrls = await Promise.all(
-        proofAddressFiles.map((file) => uploadFile(file, "form")),
-      );
 
+      let proofAddressUrl = null;
+      if (proofAddressFile) {
+        proofAddressUrl = await uploadFile(proofAddressFile, "form");
+      }
       // Faz o upload das imagens do veículo
       const vehicleImageUrls = await Promise.all(
         vehicleFiles.map((file) => uploadFile(file, "form")),
@@ -149,7 +150,7 @@ export default function MultiStepForm() {
         ...data,
         cnhFile: cnhUrls,
         personalDocument: personalDocumentUrls,
-        proofAddress: proofAddressUrls,
+        proofAddress: proofAddressUrl || "", // URL do comprovante de endereço (ou string vazia se não houver)
         vehiclePhotos: vehicleImageUrls,
         vehicleVideo: vehicleVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
       };
@@ -221,8 +222,8 @@ export default function MultiStepForm() {
                   setCnhFiles={setCnhFiles}
                   personalDocumentFiles={personalDocumentFiles}
                   setPersonalDocumentFiles={setPersonalDocumentFiles}
-                  proofAddressFiles={proofAddressFiles}
-                  setProofAddressFiles={setProofAddressFiles}
+                  proofAddressFile={proofAddressFile}
+                  setProofAddressFile={setProofAddressFile}
                 />
               )}
               {currentStep === 1 && <VehicleForm form={form} />}

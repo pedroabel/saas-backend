@@ -16,22 +16,22 @@ interface AffiliateFormProps {
   setCnhFiles: (files: File[]) => void; // Função para atualizar os arquivos da CNH
   personalDocumentFiles: File[]; // Arquivos do Documento Pessoal
   setPersonalDocumentFiles: (files: File[]) => void; // Função para atualizar os arquivos do Documento Pessoal
-  proofAddressFiles: File[]; // Arquivos do Comprovante de Endereço
-  setProofAddressFiles: (files: File[]) => void; // Função para atualizar os arquivos do Comprovante de Endereço
+  proofAddressFile: File | null; // Arquivos do Comprovante de Endereço
+  setProofAddressFile: (files: File) => void; // Função para atualizar os arquivos do Comprovante de Endereço
 }
 
 export function AffiliateForm({
   form,
   setCnhFiles,
   setPersonalDocumentFiles,
-  setProofAddressFiles,
+  setProofAddressFile,
 }: AffiliateFormProps) {
   const [cnhPreviewUrls, setCnhPreviewUrls] = useState<string[]>([]); // URLs temporárias das imagens da CNH
   const [personalDocumentPreviewUrls, setPersonalDocumentPreviewUrls] =
     useState<string[]>([]); // URLs temporárias das imagens do Documento Pessoal
-  const [proofAddressPreviewUrls, setProofAddressPreviewUrls] = useState<
-    string[]
-  >([]); // URLs temporárias das imagens do Comprovante de Endereço
+  const [proofAddressPreviewUrl, setProofAddressPreviewUrl] = useState<
+    string | null
+  >(null); // URLs temporárias das imagens do Comprovante de Endereço
 
   const handleCnhFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,19 +69,16 @@ export function AffiliateForm({
 
   const handleProofAddressFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const selectedFiles = event.target.files;
-      if (!selectedFiles || selectedFiles.length === 0) return;
-
+      const selectedFile = event.target.files?.[0];
+      if (!selectedFile) return;
       // Converte os arquivos para URLs temporárias
-      const urls = Array.from(selectedFiles).map((file) =>
-        URL.createObjectURL(file),
-      );
+      const url = URL.createObjectURL(selectedFile);
 
       // Atualiza o estado com os arquivos selecionados e as URLs temporárias
-      setProofAddressFiles(Array.from(selectedFiles));
-      setProofAddressPreviewUrls(urls);
+      setProofAddressFile(selectedFile);
+      setProofAddressPreviewUrl(url);
     },
-    [setProofAddressFiles],
+    [setProofAddressFile],
   );
 
   return (
@@ -236,7 +233,6 @@ export function AffiliateForm({
             <FormControl>
               <Input
                 type="file"
-                multiple
                 accept="image/*"
                 onChange={handleProofAddressFileUpload}
               />
@@ -245,19 +241,13 @@ export function AffiliateForm({
           </FormItem>
         )}
       />
-      {proofAddressPreviewUrls.length > 0 && (
+      {proofAddressPreviewUrl && (
         <div>
-          <p>Imagens selecionadas (Comprovante de Endereço):</p>
-          <div className="flex flex-wrap gap-4">
-            {proofAddressPreviewUrls.map((url, index) => (
-              <img
-                key={index}
-                src={url}
-                alt={`Preview Comprovante ${index + 1}`}
-                className="w-24 h-24 object-cover rounded"
-              />
-            ))}
-          </div>
+          <p>Vídeo selecionado:</p>
+          <video controls className="w-full max-w-md">
+            <source src={proofAddressPreviewUrl} type="video/mp4" />
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
         </div>
       )}
     </div>
