@@ -118,44 +118,35 @@ export default function MultiStepForm() {
 
   const onSubmit = async (data: CreateFormData) => {
     try {
-      // Faz o upload das imagens da CNH
       const cnhUrls = await Promise.all(
         cnhFiles.map((file) => uploadFile(file, "form")),
       );
 
-      // Faz o upload das imagens do Documento Pessoal
       const personalDocumentUrls = await Promise.all(
         personalDocumentFiles.map((file) => uploadFile(file, "form")),
       );
-
-      // Faz o upload das imagens do Comprovante de Endereço
-
       let proofAddressUrl = null;
       if (proofAddressFile) {
         proofAddressUrl = await uploadFile(proofAddressFile, "form");
       }
-      // Faz o upload das imagens do veículo
       const vehicleImageUrls = await Promise.all(
         vehicleFiles.map((file) => uploadFile(file, "form")),
       );
 
-      // Faz o upload do vídeo do veículo (se houver)
       let vehicleVideoUrl = null;
       if (videoFile) {
         vehicleVideoUrl = await uploadFile(videoFile, "form");
       }
 
-      // Adiciona as URLs das imagens e do vídeo aos dados do formulário
       const formData = {
         ...data,
         cnhFile: cnhUrls,
         personalDocument: personalDocumentUrls,
-        proofAddress: proofAddressUrl || "", // URL do comprovante de endereço (ou string vazia se não houver)
+        proofAddress: proofAddressUrl || "",
         vehiclePhotos: vehicleImageUrls,
-        vehicleVideo: vehicleVideoUrl || "", // URL do vídeo (ou string vazia se não houver vídeo)
+        vehicleVideo: vehicleVideoUrl || "",
       };
 
-      // Envia os dados para a API
       const response = await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
