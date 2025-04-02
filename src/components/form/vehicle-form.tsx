@@ -76,7 +76,7 @@ export function VehicleForm({ form }: VehicleFormProps) {
 
         <FormField
           control={form.control}
-          name="chassiss"
+          name="chassis"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Cpf</FormLabel>

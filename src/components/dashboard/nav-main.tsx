@@ -1,6 +1,8 @@
 "use client";
 
-import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react";
+import { DialogCreateEvent } from "./dialog-create-event";
+
+import { IconMail, type Icon } from "@tabler/icons-react";
 
 import {
   SidebarGroup,
@@ -21,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenuAction } from "@/components/ui/sidebar";
+import { Button } from "../ui/button";
 export function NavMain({
   items,
 }: {
@@ -37,21 +40,16 @@ export function NavMain({
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
-            <SidebarMenuButton
-              tooltip="Criar Evento"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-            >
-              <IconCirclePlusFilled />
-              <span>Criar Evento</span>
-            </SidebarMenuButton>
-            {/* <Button
+            <DialogCreateEvent />
+
+            <Button
               size="icon"
               className="size-8 group-data-[collapsible=icon]:opacity-0"
               variant="outline"
             >
               <IconMail />
               <span className="sr-only">Inbox</span>
-            </Button> */}
+            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>

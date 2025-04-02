@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import type { CreateFormData } from "@/types/form";
 import { useCallback, useState } from "react";
+import Image from "next/image";
 
 interface AffiliateFormProps {
   form: UseFormReturn<CreateFormData>;
@@ -177,11 +178,12 @@ export function AffiliateForm({
           <p>Imagens selecionadas (CNH):</p>
           <div className="flex flex-wrap gap-4">
             {cnhPreviewUrls.map((url, index) => (
-              <img
-                key={index}
+              <Image
                 src={url}
+                key={index}
                 alt={`Preview CNH ${index + 1}`}
-                className="w-24 h-24 object-cover rounded"
+                width={100}
+                height={100}
               />
             ))}
           </div>
@@ -212,11 +214,16 @@ export function AffiliateForm({
           <p>Imagens selecionadas (Documento Pessoal):</p>
           <div className="flex flex-wrap gap-4">
             {personalDocumentPreviewUrls.map((url, index) => (
-              <img
+              // <img
+
+              // />
+              <Image
                 key={index}
                 src={url}
                 alt={`Preview Documento ${index + 1}`}
                 className="w-24 h-24 object-cover rounded"
+                width={100}
+                height={100}
               />
             ))}
           </div>

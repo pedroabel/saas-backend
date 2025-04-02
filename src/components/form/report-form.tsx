@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import type { CreateFormData } from "@/types/form";
+import Image from "next/image";
 
 interface ReportFormProps {
   form: UseFormReturn<CreateFormData>;
@@ -116,7 +117,7 @@ export function ReportForm({ form, setFiles, setVideoFile }: ReportFormProps) {
           <p>Imagens selecionadas:</p>
           <div className="flex flex-wrap gap-4">
             {previewUrls.map((url, index) => (
-              <img
+              <Image
                 key={index}
                 src={url}
                 alt={`Preview ${index + 1}`}
