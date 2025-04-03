@@ -1,9 +1,8 @@
-import { Copy } from "lucide-react";
-
+// import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
+  // DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -11,12 +10,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { IconCirclePlusFilled } from "@tabler/icons-react";
+import { IconCirclePlusFilled, IconSend } from "@tabler/icons-react";
 import { SidebarMenuButton } from "../ui/sidebar";
+import { Separator } from "../ui/separator";
+import { Copy } from "lucide-react";
+import { TabSend } from "./tab-send";
 
 export function DialogCreateEvent() {
+  const handleSubmit = () => {};
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -29,34 +35,47 @@ export function DialogCreateEvent() {
         </SidebarMenuButton>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Enviar Formulário</DialogTitle>
-          <DialogDescription>
-            Anyone who has this link will be able to view this.
+        <DialogHeader className="pt-2">
+          <DialogTitle className="text-base">Criação de Evento</DialogTitle>
+          <DialogDescription className="text-sm">
+            Qualquer pessoa que tenha esse link poderá preencher o formulário do
+            evento.
           </DialogDescription>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <Label htmlFor="link" className="sr-only">
-              Link
-            </Label>
-            <Input
-              id="link"
-              defaultValue="https://ui.shadcn.com/docs/installation"
-              readOnly
-            />
-          </div>
-          <Button type="submit" size="sm" className="px-3">
-            <span className="sr-only">Copy</span>
-            <Copy />
-          </Button>
-        </div>
-        <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            <Button type="button" variant="secondary">
-              Close
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center space-x-2">
+            <div className="grid flex-1 gap-2">
+              <Label htmlFor="link" className="sr-only">
+                Link
+              </Label>
+              <Input
+                id="link"
+                className="text-sm"
+                defaultValue="https://sinpro.com/form/token=49620cd2-06c1-46a7-b970-b2d43a7527d3"
+                readOnly
+              />
+            </div>
+            <Button type="submit" size="sm" className="">
+              <Copy />
+              <span className="font-semibold text-sm">Copiar</span>
             </Button>
-          </DialogClose>
+          </div>
+        </div>
+        <Separator />
+        <div className="flex flex-col space-y-2">
+          <Alert>
+            <IconSend className="h-6 w-6" />
+            <AlertTitle>Método de envio</AlertTitle>
+            <AlertDescription>
+              Selecione o método de envio do evento.
+            </AlertDescription>
+          </Alert>
+          <TabSend />
+        </div>
+        <DialogFooter className="sm:justify-end">
+          <Button type="button" variant="default" onClick={handleSubmit}>
+            Enviar
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -329,7 +329,7 @@ export function DataTable({
         </Label>
         <div className="relative">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Procurar" className="pl-8" />
+          <Input type="email" placeholder="Procurar" className="pl-8" />
         </div>
 
         <div className="flex items-center gap-2">
