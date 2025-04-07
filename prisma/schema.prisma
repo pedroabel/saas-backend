@@ -26,9 +26,8 @@ model Affiliate {
 }
 
 model Vehicle {
-  id          String @id @default(uuid())
-  affiliateId String
-
+  id           String    @id @default(uuid())
+  affiliateId  String
   brand        String
   model        String
   licensePlate String
