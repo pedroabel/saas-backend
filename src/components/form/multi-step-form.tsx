@@ -32,6 +32,20 @@ type Step = {
 
 const steps: Step[] = [
   {
+    id: "event",
+    name: "Evento",
+    fields: [
+      "protocol",
+      "type",
+      "location",
+      "policeReportNumber",
+      "hasThirdParty",
+      "thirdPartyEmail",
+      "thirdPartyPhone",
+      "driver",
+    ],
+  },
+  {
     id: "affiliate",
     name: "Associado",
     fields: [
@@ -58,20 +72,6 @@ const steps: Step[] = [
     ],
   },
   {
-    id: "event",
-    name: "Evento",
-    fields: [
-      "protocol",
-      "type",
-      "location",
-      "policeReportNumber",
-      "hasThirdParty",
-      "thirdPartyEmail",
-      "thirdPartyPhone",
-      "driver",
-    ],
-  },
-  {
     id: "address",
     name: "Endereço",
     fields: ["address", "city", "state", "zipCode"],
@@ -87,14 +87,13 @@ const steps: Step[] = [
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  // Estados para os arquivos de cada campo de upload
-  const [cnhFiles, setCnhFiles] = useState<File[]>([]); // Arquivos da CNH
+  const [cnhFiles, setCnhFiles] = useState<File[]>([]);
   const [personalDocumentFiles, setPersonalDocumentFiles] = useState<File[]>(
     [],
-  ); // Arquivos do Documento Pessoal
-  const [proofAddressFile, setProofAddressFile] = useState<File | null>(null); // Arquivos do Comprovante de Endereço
-  const [vehicleFiles, setVehicleFiles] = useState<File[]>([]); // Arquivos das fotos do veículo
-  const [videoFile, setVideoFile] = useState<File | null>(null); // Arquivo de vídeo do veículo
+  );
+  const [proofAddressFile, setProofAddressFile] = useState<File | null>(null);
+  const [vehicleFiles, setVehicleFiles] = useState<File[]>([]);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
 
   const form = useForm<CreateFormData>({
     resolver: zodResolver(createFormSchema),
@@ -206,7 +205,8 @@ export default function MultiStepForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent>
-              {currentStep === 0 && (
+              {currentStep === 0 && <EventInfoForm form={form} />}
+              {currentStep === 1 && (
                 <AffiliateForm
                   form={form}
                   cnhFiles={cnhFiles}
@@ -217,8 +217,8 @@ export default function MultiStepForm() {
                   setProofAddressFile={setProofAddressFile}
                 />
               )}
-              {currentStep === 1 && <VehicleForm form={form} />}
-              {currentStep === 2 && <EventInfoForm form={form} />}
+              {currentStep === 2 && <VehicleForm form={form} />}
+
               {currentStep === 3 && <AddressForm form={form} />}
               {currentStep === 4 && (
                 <ReportForm

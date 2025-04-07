@@ -19,9 +19,13 @@ import { SidebarMenuButton } from "../ui/sidebar";
 import { Separator } from "../ui/separator";
 import { Copy } from "lucide-react";
 import { TabSend } from "./tab-send";
+import { useRouter } from "next/navigation";
 
 export function DialogCreateEvent() {
-  const handleSubmit = () => {};
+  const router = useRouter();
+  const handleSubmit = () => {
+    router.push("/associado/login");
+  };
 
   return (
     <Dialog>
