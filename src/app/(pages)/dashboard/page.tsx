@@ -1,5 +1,5 @@
 // import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/dashboard/data-event-table";
+import { DataTable } from "@/components/dashboard/data-event-table-simple";
 import { SectionCards } from "@/components/dashboard/section-cards";
 import { SiteHeader } from "@/components/dashboard/site-header";
 
