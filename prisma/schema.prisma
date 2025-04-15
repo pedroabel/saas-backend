@@ -86,3 +86,14 @@ model Account {
   password    String
   affiliate   Affiliate @relation(fields: [affiliateId], references: [id])
 }
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  name       String?
+  avatar     String?
+  role       String   @default("user")
+  supabaseId String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
