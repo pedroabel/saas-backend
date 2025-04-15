@@ -1,4 +1,4 @@
-import { LoginFormAffiliate } from "@/components/login-form-affiliate";
+import { LoginFormAffiliate } from "@/components/login/login-form-affiliate";
 
 export default function LoginAffiliatePage() {
   return (
