@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { DataTable } from "@/components/dashboard/data-event-table";
 import { SiteHeader } from "@/components/dashboard/site-header";
-import data from "../data-event.json";
 
 export default function EventosPage() {
   return (
@@ -16,7 +15,7 @@ export default function EventosPage() {
             {/* <div className="px-4 lg:px-6">
       <ChartAreaInteractive />
     </div> */}
-            <DataTable data={data} />
+            <DataTable />
           </div>
         </div>
       </div>
