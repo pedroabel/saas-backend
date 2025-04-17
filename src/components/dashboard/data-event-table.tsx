@@ -29,7 +29,7 @@ import {
   IconCircleCheckFilled,
   IconDotsVertical,
   IconLayoutColumns,
-  IconLoader,
+  IconLoader2,
   IconPlus,
   IconTrendingUp,
 } from "@tabler/icons-react";
@@ -109,7 +109,7 @@ export const schema = z.object({
 
 const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
-    accessorKey: "event",
+    accessorKey: "evento",
     header: "Evento",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />;
@@ -117,7 +117,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "type",
+    accessorKey: "tipo",
     header: "Tipo",
     cell: ({ row }) => (
       <div className="w-32">
@@ -135,21 +135,21 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
         {row.original.status === "Concluído" ? (
           <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
         ) : (
-          <IconLoader />
+          <IconLoader2 />
         )}
         {row.original.status}
       </Badge>
     ),
   },
   {
-    accessorKey: "affiliate",
+    accessorKey: "associado",
     header: "Associado",
     cell: ({ row }) => {
       return <>{row.original.affiliate}</>;
     },
   },
   {
-    accessorKey: "date",
+    accessorKey: "data",
     header: "Data",
     cell: ({ row }) => {
       return <>{row.original.date}</>;
@@ -197,7 +197,13 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
       }}
     >
       {row.getVisibleCells().map((cell, index) => (
-        <TableCell key={cell.id} className={index === 0 ? "pl-6" : ""}>
+        <TableCell
+          key={cell.id}
+          className={index === 0 ? "pl-6" : ""}
+          style={
+            index === 0 ? { minWidth: "200px", maxWidth: "300px" } : undefined
+          }
+        >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </TableCell>
       ))}
@@ -219,6 +225,8 @@ export function DataTable() {
     pageIndex: 0,
     pageSize: 10,
   });
+  const [totalPages, setTotalPages] = React.useState(0);
+  // const [totalItems, setTotalItems] = React.useState(0);
   const sortableId = React.useId();
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -229,12 +237,17 @@ export function DataTable() {
   React.useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("/api/events");
+        setIsLoading(true);
+        const response = await fetch(
+          `/api/events?page=${pagination.pageIndex + 1}&pageSize=${pagination.pageSize}`,
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch events");
         }
-        const events = await response.json();
-        setData(events);
+        const result = await response.json();
+        setData(result.data);
+        setTotalPages(result.totalPages);
+        // setTotalItems(result.total);
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
@@ -243,7 +256,7 @@ export function DataTable() {
     };
 
     fetchEvents();
-  }, []);
+  }, [pagination.pageIndex, pagination.pageSize]);
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
     () => data?.map(({ id }) => id) || [],
@@ -273,7 +286,15 @@ export function DataTable() {
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    manualPagination: true,
+    pageCount: totalPages,
+    enableMultiRowSelection: true,
   });
+
+  // Reset selection when changing pages
+  React.useEffect(() => {
+    setRowSelection({});
+  }, [pagination.pageIndex, pagination.pageSize]);
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -347,7 +368,7 @@ export function DataTable() {
         <div className="overflow-hidden rounded-lg border">
           {isLoading ? (
             <div className="flex h-24 items-center justify-center">
-              <IconLoader className="h-6 w-6 animate-spin" />
+              <IconLoader2 className="h-6 w-6 animate-spin" />
             </div>
           ) : (
             <DndContext
@@ -405,15 +426,15 @@ export function DataTable() {
             </DndContext>
           )}
         </div>
-        <div className="flex items-center justify-between px-4">
-          <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} de{" "}
-            {table.getFilteredRowModel().rows.length} linha(s) selecionadas.
-          </div>
+        <div className="flex items-center justify-end end px-4">
+          {/* <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
+            {Object.keys(rowSelection).length} de {totalItems} linha(s)
+            selecionadas.
+          </div> */}
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="rows-per-page" className="text-sm font-medium">
-                Linhas
+                Linhas por página
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -427,7 +448,7 @@ export function DataTable() {
                   />
                 </SelectTrigger>
                 <SelectContent side="top">
-                  {[10, 20, 30, 40, 50].map((pageSize) => (
+                  {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                     <SelectItem key={pageSize} value={`${pageSize}`}>
                       {pageSize}
                     </SelectItem>
@@ -436,8 +457,7 @@ export function DataTable() {
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center text-sm font-medium">
-              Pagina {table.getState().pagination.pageIndex + 1} de{" "}
-              {table.getPageCount()}
+              Página {table.getState().pagination.pageIndex + 1} de {totalPages}
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
               <Button
@@ -446,7 +466,7 @@ export function DataTable() {
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Primeira pagina</span>
+                <span className="sr-only">Primeira página</span>
                 <IconChevronsLeft />
               </Button>
               <Button
@@ -466,17 +486,17 @@ export function DataTable() {
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Proximo</span>
+                <span className="sr-only">Próximo</span>
                 <IconChevronRight />
               </Button>
               <Button
                 variant="outline"
                 className="hidden size-8 lg:flex"
                 size="icon"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                onClick={() => table.setPageIndex(totalPages - 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Ultima pagina</span>
+                <span className="sr-only">Última página</span>
                 <IconChevronsRight />
               </Button>
             </div>

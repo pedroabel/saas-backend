@@ -50,6 +50,7 @@ model Event {
   thirdPartyEmail    String
   thirdPartyPhone    String
   driver             String
+  status             String @default("Em andamento")
 
   affiliate Affiliate @relation(fields: [affiliateId], references: [id])
 
