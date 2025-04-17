@@ -120,6 +120,8 @@ export function ReportForm({ form, setFiles, setVideoFile }: ReportFormProps) {
               <Image
                 key={index}
                 src={url}
+                width={100}
+                height={100}
                 alt={`Preview ${index + 1}`}
                 className="w-24 h-24 object-cover rounded"
               />
