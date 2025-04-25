@@ -1,10 +1,21 @@
 import { DataTable } from "@/components/dashboard/data-affiliate-table";
 import { SiteHeader } from "@/components/dashboard/site-header";
 import data from "../data-affiliate.json";
+import Head from "next/head";
+
 export default function AssociadosPage() {
   return (
     <>
-      <SiteHeader title="Associados" />
+      <Head>
+        <title>Sinpro - Associados</title>
+      </Head>
+      <SiteHeader
+        title=""
+        breadcrumbs={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Associados" },
+        ]}
+      />
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
           <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">

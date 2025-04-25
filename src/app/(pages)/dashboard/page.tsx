@@ -2,11 +2,15 @@
 import { SectionCards } from "@/components/dashboard/section-cards";
 import { SiteHeader } from "@/components/dashboard/site-header";
 import { DataTable } from "@/components/dashboard/data-event-table";
+import Head from "next/head";
 
 export default function DashboardPage() {
   return (
     <>
-      <SiteHeader title="Dashboard" />
+      <Head>
+        <title>Sinpro - Dashboard</title>
+      </Head>
+      <SiteHeader title="" breadcrumbs={[{ label: "Dashboard" }]} />
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
           <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
