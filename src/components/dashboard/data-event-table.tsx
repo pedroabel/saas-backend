@@ -207,7 +207,9 @@ export function DataTable() {
     pageSize: 10,
   });
   const [totalPages, setTotalPages] = React.useState(0);
-  // const [totalItems, setTotalItems] = React.useState(0);
+  const [cache, setCache] = React.useState<
+    Record<string, z.infer<typeof schema>[]>
+  >({});
   const sortableId = React.useId();
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
@@ -219,6 +221,15 @@ export function DataTable() {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
+        const cacheKey = `${pagination.pageIndex}-${pagination.pageSize}`;
+
+        // Verifica se os dados já estão em cache
+        if (cache[cacheKey]) {
+          setData(cache[cacheKey]);
+          setIsLoading(false);
+          return;
+        }
+
         const response = await fetch(
           `/api/events?page=${pagination.pageIndex + 1}&pageSize=${pagination.pageSize}`,
         );
@@ -226,9 +237,15 @@ export function DataTable() {
           throw new Error("Failed to fetch events");
         }
         const result = await response.json();
+
+        // Atualiza o cache com os novos dados
+        setCache((prev) => ({
+          ...prev,
+          [cacheKey]: result.data,
+        }));
+
         setData(result.data);
         setTotalPages(result.totalPages);
-        // setTotalItems(result.total);
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
@@ -237,7 +254,7 @@ export function DataTable() {
     };
 
     fetchEvents();
-  }, [pagination.pageIndex, pagination.pageSize]);
+  }, [pagination.pageIndex, pagination.pageSize, cache]);
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
     () => data?.map(({ id }) => id) || [],
@@ -408,10 +425,6 @@ export function DataTable() {
           )}
         </div>
         <div className="flex items-center justify-end end px-4">
-          {/* <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-            {Object.keys(rowSelection).length} de {totalItems} linha(s)
-            selecionadas.
-          </div> */}
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="rows-per-page" className="text-sm font-medium">
