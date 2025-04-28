@@ -9,6 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import React from "react";
 
 interface SiteHeaderProps {
   title: string;
@@ -32,8 +33,8 @@ export function SiteHeader({ title, breadcrumbs }: SiteHeaderProps) {
             <Breadcrumb>
               <BreadcrumbList>
                 {breadcrumbs.map((crumb, index) => (
-                  <>
-                    <BreadcrumbItem key={index}>
+                  <React.Fragment key={index}>
+                    <BreadcrumbItem>
                       {crumb.href ? (
                         <BreadcrumbLink href={crumb.href}>
                           {crumb.label}
@@ -43,7 +44,7 @@ export function SiteHeader({ title, breadcrumbs }: SiteHeaderProps) {
                       )}
                     </BreadcrumbItem>
                     {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
-                  </>
+                  </React.Fragment>
                 ))}
               </BreadcrumbList>
             </Breadcrumb>
