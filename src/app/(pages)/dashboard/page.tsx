@@ -18,7 +18,11 @@ export default function DashboardPage() {
             {/* <div className="px-4 lg:px-6">
           <ChartAreaInteractive />
         </div> */}
-            <DataTable />
+            <DataTable
+              showFilters={false}
+              showPagination={false}
+              showSearch={false}
+            />
           </div>
         </div>
       </div>
