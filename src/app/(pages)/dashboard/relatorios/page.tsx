@@ -1,7 +1,7 @@
+import { ChartAreaInteractive } from "@/components/dashboard/reports/chart-area-interactive";
 import Head from "next/head";
-import { ChartAreaInteractive } from "@/components/dashboard/chart-area-interactive";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { ReportsCards } from "@/components/dashboard/reports-cards";
+import { ReportsCards } from "@/components/dashboard/cards/reports-cards";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default function RelatoriosPage() {
   return (

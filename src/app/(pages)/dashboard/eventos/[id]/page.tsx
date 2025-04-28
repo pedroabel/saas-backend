@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { prisma } from "@/lib/prisma";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
 
 interface EventDetailsPageProps {
   params: {

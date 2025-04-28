@@ -1,8 +1,6 @@
-// import { Copy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Dialog,
-  // DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -10,15 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { IconCirclePlusFilled, IconSend } from "@tabler/icons-react";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+// import { Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Copy } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { IconCirclePlusFilled, IconSend } from "@tabler/icons-react";
-import { SidebarMenuButton } from "../ui/sidebar";
-import { Separator } from "../ui/separator";
-import { Copy } from "lucide-react";
-import { TabSend } from "./tab-send";
+import { Separator } from "../../ui/separator";
+import { SidebarMenuButton } from "../../ui/sidebar";
+import { TabSend } from "../tab-send";
 import { useRouter } from "next/navigation";
 
 export function DialogCreateEvent() {

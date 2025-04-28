@@ -1,5 +1,5 @@
-import { Component } from "./pie-chart";
-import { BarChartReport } from "./bar-chart-report";
+import { BarChartReport } from "../reports/bar-chart-report";
+import { Component } from "../reports/pie-chart";
 
 export function ReportsCards() {
   return (

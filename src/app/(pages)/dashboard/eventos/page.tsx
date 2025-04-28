@@ -1,6 +1,6 @@
+import { DataTable } from "@/components/dashboard/tables/data-event-table";
 import Head from "next/head";
-import { DataTable } from "@/components/dashboard/data-event-table";
-import { SiteHeader } from "@/components/dashboard/site-header";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default function EventosPage() {
   return (

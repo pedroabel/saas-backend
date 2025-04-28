@@ -1,26 +1,23 @@
 "use client";
 
 import * as React from "react";
+
 import {
+  IconAdjustmentsHorizontal,
+  IconBuildingArch,
   IconCamera,
   IconChartBar,
   IconFileAi,
   IconFileDescription,
   IconHelp,
-  IconManualGearbox,
+  IconLayersSubtract,
+  IconLayoutDashboard,
   IconListDetails,
+  IconManualGearbox,
   IconSettings,
   IconUsers,
-  IconLayersSubtract,
-  IconBuildingArch,
-  IconAdjustmentsHorizontal,
   IconUsersGroup,
-  IconLayoutDashboard,
 } from "@tabler/icons-react";
-
-import { NavMain } from "@/components/dashboard/nav-main";
-import { NavSecondary } from "@/components/dashboard/nav-secondary";
-import { NavUser } from "@/components/dashboard/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -30,6 +27,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
+import { NavMain } from "@/components/dashboard/layout/nav-main";
+import { NavSecondary } from "@/components/dashboard/layout/nav-secondary";
+import { NavUser } from "@/components/dashboard/layout/nav-user";
 
 const data = {
   user: {

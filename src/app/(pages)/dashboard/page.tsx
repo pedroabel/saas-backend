@@ -1,8 +1,8 @@
-// import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { SectionCards } from "@/components/dashboard/section-cards";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { DataTable } from "@/components/dashboard/data-event-table";
+import { DataTable } from "@/components/dashboard/tables/data-event-table";
 import Head from "next/head";
+// import { ChartAreaInteractive } from "@/components/chart-area-interactive";
+import { SectionCards } from "@/components/dashboard/cards/section-cards";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default function DashboardPage() {
   return (

@@ -1,7 +1,8 @@
-import { SiteHeader } from "@/components/dashboard/site-header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { EventCard } from "@/components/dashboard/cards/event-queue-card";
 import Head from "next/head";
-import { EventCard } from "@/components/dashboard/event-card";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default async function MailPage() {
   return (

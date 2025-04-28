@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { SiteHeader } from "@/components/dashboard/site-header";
+import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default function OrganizacaoPage() {
   return (

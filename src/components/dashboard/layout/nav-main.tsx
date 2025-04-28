@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenuAction } from "@/components/ui/sidebar";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 export function NavMain({
   items,
 }: {
