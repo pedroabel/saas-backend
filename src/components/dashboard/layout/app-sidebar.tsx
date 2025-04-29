@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { NavMain } from "@/components/dashboard/layout/nav-main";
+import { NavOrganizations } from "./nav-organizations";
 import { NavSecondary } from "@/components/dashboard/layout/nav-secondary";
 import { NavUser } from "@/components/dashboard/layout/nav-user";
 
@@ -169,7 +170,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* <NavOrganizations items={data.organizations} /> */}
+        <NavOrganizations items={data.organizations} />
+
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

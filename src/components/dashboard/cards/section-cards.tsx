@@ -1,9 +1,5 @@
 "use client";
 
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -12,6 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+
+import { Badge } from "@/components/ui/badge";
+import { SkeletonSectionCards } from "../skeleton/page";
 
 interface Stats {
   totalEvents: number;
@@ -34,6 +35,11 @@ export function SectionCards() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        setIsLoading(true);
+
+        // Adiciona um delay artificial de 2 segundos
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
         const response = await fetch("/api/stats");
         if (!response.ok) {
           throw new Error("Failed to fetch stats");
@@ -51,20 +57,7 @@ export function SectionCards() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-b *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-        {[...Array(4)].map((_, i) => (
-          <Card key={i} className="@container/card">
-            <CardHeader>
-              <CardDescription>Carregando...</CardDescription>
-              <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-                ...
-              </CardTitle>
-            </CardHeader>
-          </Card>
-        ))}
-      </div>
-    );
+    return <SkeletonSectionCards />;
   }
 
   return (

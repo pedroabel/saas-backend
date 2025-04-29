@@ -79,6 +79,7 @@ import {
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { SkeletonEventTable } from "../skeleton/page";
 
 export const schema = z.object({
   id: z.number(),
@@ -240,6 +241,9 @@ export function DataTable({
           return;
         }
 
+        // Adiciona um delay artificial de 2 segundos
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
         const response = await fetch(
           `/api/events?page=${pagination.pageIndex + 1}&pageSize=${pagination.pageSize}`,
         );
@@ -387,12 +391,10 @@ export function DataTable({
         value="outline"
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
-        <div className="overflow-hidden rounded-lg border">
-          {isLoading ? (
-            <div className="flex h-24 items-center justify-center">
-              <IconLoader2 className="h-6 w-6 animate-spin" />
-            </div>
-          ) : (
+        {isLoading ? (
+          <SkeletonEventTable />
+        ) : (
+          <div className="overflow-hidden rounded-lg border">
             <DndContext
               collisionDetection={closestCenter}
               modifiers={[restrictToVerticalAxis]}
@@ -446,9 +448,9 @@ export function DataTable({
                 </TableBody>
               </Table>
             </DndContext>
-          )}
-        </div>
-        {showPagination && (
+          </div>
+        )}
+        {showPagination && !isLoading && (
           <div className="flex items-center justify-end end px-4">
             <div className="flex w-full items-center gap-8 lg:w-fit">
               <div className="hidden items-center gap-2 lg:flex">
