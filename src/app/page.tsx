@@ -57,7 +57,9 @@ export default async function Home() {
             <Link href={"/associado/login"}>Login - Associado</Link>
           </li>
           <li className="mb-2 tracking-[-.01em]">
-            <Link href={"/forgot-password"}>Esqueceu a senha - Sistema</Link>
+            <Link href={"/auth/forgot-password"}>
+              Esqueceu a senha - Sistema
+            </Link>
           </li>
           <li className="mb-2 tracking-[-.01em]">
             <Link href={"/forgot-password"}>Erro 404</Link>
