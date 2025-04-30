@@ -197,12 +197,16 @@ interface DataTableProps {
   showFilters?: boolean;
   showSearch?: boolean;
   showPagination?: boolean;
+  initialPageSize?: number;
+  skeletonHeight?: number;
 }
 
 export function DataTable({
   showFilters = true,
   showSearch = true,
   showPagination = true,
+  initialPageSize = 10,
+  skeletonHeight = 400,
 }: DataTableProps) {
   const [data, setData] = React.useState<z.infer<typeof schema>[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -215,7 +219,7 @@ export function DataTable({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: initialPageSize,
   });
   const [totalPages, setTotalPages] = React.useState(0);
   const [cache, setCache] = React.useState<
@@ -392,7 +396,7 @@ export function DataTable({
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
         {isLoading ? (
-          <SkeletonEventTable />
+          <SkeletonEventTable height={skeletonHeight} />
         ) : (
           <div className="overflow-hidden rounded-lg border">
             <DndContext

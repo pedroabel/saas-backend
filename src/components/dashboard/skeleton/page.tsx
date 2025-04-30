@@ -10,10 +10,14 @@ export function SkeletonSectionCards() {
   );
 }
 
-export function SkeletonEventTable() {
+interface SkeletonEventTableProps {
+  height?: number;
+}
+
+export function SkeletonEventTable({ height = 400 }: SkeletonEventTableProps) {
   return (
     <div className="rounded-lg">
-      <Skeleton className="h-[400px] w-full" />
+      <Skeleton style={{ height: `${height}px` }} className="w-full" />
     </div>
   );
 }

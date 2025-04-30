@@ -19,6 +19,8 @@ export default function DashboardPage() {
               showFilters={false}
               showPagination={false}
               showSearch={false}
+              initialPageSize={6}
+              skeletonHeight={360}
             />
           </div>
         </div>
