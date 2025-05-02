@@ -1,12 +1,14 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { syncUser } from "@/utils/sync-user";
 
 export async function login(formData: FormData) {
+  // Add delay for testing loading state
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const supabase = await createClient();
 
   // type-casting here for convenience
@@ -19,7 +21,10 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect("/error");
+    if (error.message.includes("Invalid login credentials")) {
+      return { error: "Email ou senha incorretos" };
+    }
+    return { error: "Ocorreu um erro ao fazer login" };
   }
 
   revalidatePath("/", "layout");

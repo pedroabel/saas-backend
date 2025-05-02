@@ -22,7 +22,11 @@ interface Stats {
   affiliateVariation: number;
 }
 
-export function SectionCards() {
+interface SectionCardsProps {
+  isLoading?: boolean;
+}
+
+export function SectionCards({ isLoading }: SectionCardsProps) {
   const [stats, setStats] = useState<Stats>({
     totalEvents: 0,
     pendingEvents: 0,
@@ -30,16 +34,10 @@ export function SectionCards() {
     eventVariation: 0,
     affiliateVariation: 0,
   });
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        setIsLoading(true);
-
-        // Adiciona um delay artificial de 2 segundos
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-
         const response = await fetch("/api/stats");
         if (!response.ok) {
           throw new Error("Failed to fetch stats");
@@ -48,8 +46,6 @@ export function SectionCards() {
         setStats(data);
       } catch (error) {
         console.error("Error fetching stats:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 

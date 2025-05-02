@@ -1,22 +1,66 @@
 "use client";
 
-import { Eye, EyeOff } from "lucide-react";
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { IconExclamationCircle } from "@tabler/icons-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { login } from "@/app/(pages)/auth/login/actions";
+import { useFormStatus } from "react-dom";
 import { useState } from "react";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button className="w-full" type="submit" disabled={pending}>
+      {pending ? (
+        <div className="flex items-center justify-center gap-2">
+          <Loader2 className="h-5 w-5 animate-spin" />
+        </div>
+      ) : (
+        "Entrar"
+      )}
+    </Button>
+  );
+}
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  async function handleSubmit(formData: FormData) {
+    setError(null);
+    const result = await login(formData);
+    if (result?.error) {
+      setError(result.error);
+    }
+  }
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props}>
+    <form
+      className={cn("flex flex-col gap-6", className)}
+      {...props}
+      action={handleSubmit}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Faça login na sua conta</h1>
         <p className="text-muted-foreground text-sms">
@@ -32,13 +76,15 @@ export function LoginForm({
             type="email"
             placeholder="endereço@domínio.com"
             required
+            value={formData.email}
+            onChange={handleInputChange}
           />
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Senha</Label>
             <a
-              href="#"
+              href="/auth/forgot-password"
               className="ml-auto text-sm underline-offset-4 hover:underline"
             >
               Esqueceu sua senha?
@@ -50,6 +96,8 @@ export function LoginForm({
               name="password"
               type={showPassword ? "text" : "password"}
               required
+              value={formData.password}
+              onChange={handleInputChange}
             />
             <button
               type="button"
@@ -64,12 +112,17 @@ export function LoginForm({
             </button>
           </div>
         </div>
-        <Button className="w-full" formAction={login}>
-          Entrar
-        </Button>
-        {/* <Button className="w-full" formAction={signup}>
-          Cadastrar
-        </Button> */}
+        {error && (
+          <Alert
+            variant="destructive"
+            className="bg-red-50 border-red-200 p-2 pl-3"
+          >
+            <IconExclamationCircle className="h-6 w-6" />
+            <AlertTitle>{error}</AlertTitle>
+          </Alert>
+        )}
+
+        <SubmitButton />
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
           <span className="bg-background text-muted-foreground relative z-10 px-2">
             Sistema

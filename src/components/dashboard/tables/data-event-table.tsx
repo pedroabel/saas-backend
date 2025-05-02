@@ -90,6 +90,40 @@ export const schema = z.object({
   date: z.string(),
 });
 
+function ActionsCell({ row }: { row: Row<z.infer<typeof schema>> }) {
+  const router = useRouter();
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
+          size="icon"
+        >
+          <IconDotsVertical />
+          <span className="sr-only">Abrir menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-32">
+        <DropdownMenuItem
+          onClick={() => router.push(`/dashboard/eventos/${row.original.id}`)}
+        >
+          Evento
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            router.push(`/dashboard/associados/${row.original.affiliate}`)
+          }
+        >
+          Associado
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem variant="destructive">Arquivar</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     accessorKey: "evento",
@@ -140,25 +174,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     id: "actions",
-    cell: () => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
-            size="icon"
-          >
-            <IconDotsVertical />
-            <span className="sr-only">Abrir menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Visualizar</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Arquivar</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
+    cell: ({ row }) => <ActionsCell row={row} />,
   },
 ];
 
@@ -199,6 +215,7 @@ interface DataTableProps {
   showPagination?: boolean;
   initialPageSize?: number;
   skeletonHeight?: number;
+  isLoading?: boolean;
 }
 
 export function DataTable({
@@ -207,9 +224,9 @@ export function DataTable({
   showPagination = true,
   initialPageSize = 10,
   skeletonHeight = 400,
+  isLoading: externalLoading,
 }: DataTableProps) {
   const [data, setData] = React.useState<z.infer<typeof schema>[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -235,18 +252,13 @@ export function DataTable({
   React.useEffect(() => {
     const fetchEvents = async () => {
       try {
-        setIsLoading(true);
         const cacheKey = `${pagination.pageIndex}-${pagination.pageSize}`;
 
         // Verifica se os dados já estão em cache
         if (cache[cacheKey]) {
           setData(cache[cacheKey]);
-          setIsLoading(false);
           return;
         }
-
-        // Adiciona um delay artificial de 2 segundos
-        await new Promise((resolve) => setTimeout(resolve, 5000));
 
         const response = await fetch(
           `/api/events?page=${pagination.pageIndex + 1}&pageSize=${pagination.pageSize}`,
@@ -266,8 +278,6 @@ export function DataTable({
         setTotalPages(result.totalPages);
       } catch (error) {
         console.error("Error fetching events:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -395,7 +405,7 @@ export function DataTable({
         value="outline"
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
-        {isLoading ? (
+        {externalLoading ? (
           <SkeletonEventTable height={skeletonHeight} />
         ) : (
           <div className="overflow-hidden rounded-lg border">
@@ -454,7 +464,7 @@ export function DataTable({
             </DndContext>
           </div>
         )}
-        {showPagination && !isLoading && (
+        {showPagination && !externalLoading && (
           <div className="flex items-center justify-end end px-4">
             <div className="flex w-full items-center gap-8 lg:w-fit">
               <div className="hidden items-center gap-2 lg:flex">
@@ -550,15 +560,7 @@ export function DataTable({
 }
 
 function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
-  const router = useRouter();
-
   return (
-    <Button
-      variant="link"
-      className="text-foreground w-fit px-0 text-left"
-      onClick={() => router.push(`/dashboard/eventos/${item.id}`)}
-    >
-      {item.event}
-    </Button>
+    <div className="font-semibold w-fit px-0 text-left ">{item.event}</div>
   );
 }

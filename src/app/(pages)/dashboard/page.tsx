@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { DataTable } from "@/components/dashboard/tables/data-event-table";
 import Head from "next/head";
 // import { ChartAreaInteractive } from "@/components/chart-area-interactive";
@@ -5,6 +9,17 @@ import { SectionCards } from "@/components/dashboard/cards/section-cards";
 import { SiteHeader } from "@/components/dashboard/layout/site-header";
 
 export default function DashboardPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Set loading to false after a short delay to ensure both components are ready
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Head>
@@ -14,13 +29,14 @@ export default function DashboardPage() {
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col ">
           <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-            <SectionCards />
+            <SectionCards isLoading={isLoading} />
             <DataTable
               showFilters={false}
               showPagination={false}
               showSearch={false}
               initialPageSize={6}
               skeletonHeight={360}
+              isLoading={isLoading}
             />
           </div>
         </div>

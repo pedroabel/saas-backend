@@ -51,10 +51,10 @@ export default async function Home() {
             <Link href={"/form"}>Formulário</Link>
           </li>
           <li className="mb-2 tracking-[-.01em]">
-            <Link href={"/login"}>Login - Sistema</Link>
+            <Link href={"/auth/login"}>Login - Sistema</Link>
           </li>
           <li className="mb-2 tracking-[-.01em]">
-            <Link href={"/associado/login"}>Login - Associado</Link>
+            <Link href={"/auth//associado/login"}>Login - Associado</Link>
           </li>
           <li className="mb-2 tracking-[-.01em]">
             <Link href={"/auth/forgot-password"}>
