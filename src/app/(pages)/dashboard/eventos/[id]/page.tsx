@@ -4,17 +4,18 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 interface EventDetailsPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EventDetailsPage({
   params,
 }: EventDetailsPageProps) {
+  const resolvedParams = await params;
   const event = await prisma.event.findUnique({
     where: {
-      id: params.id,
+      id: resolvedParams.id,
     },
     include: {
       affiliate: {
@@ -127,16 +128,19 @@ export default async function EventDetailsPage({
                     <p className="text-sm text-muted-foreground">CPF</p>
                     <p className="font-medium">{event.affiliate.cpf}</p>
                   </div>
-                  {event.affiliate.address[0] && (
-                    <div>
-                      <p className="text-sm text-muted-foreground">Endereço</p>
-                      <p className="font-medium">
-                        {event.affiliate.address[0].address},{" "}
-                        {event.affiliate.address[0].city} -{" "}
-                        {event.affiliate.address[0].state}
-                      </p>
-                    </div>
-                  )}
+                  {event.affiliate.address &&
+                    event.affiliate.address.length > 0 && (
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          Endereço
+                        </p>
+                        <p className="font-medium">
+                          {event.affiliate.address[0].address},{" "}
+                          {event.affiliate.address[0].city} -{" "}
+                          {event.affiliate.address[0].state}
+                        </p>
+                      </div>
+                    )}
                 </div>
               </div>
             )}
